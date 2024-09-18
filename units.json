@@ -1,0 +1,27 @@
+[
+    {
+        "name": "AH-64D Longbow",
+        "type": "Helo",
+        "price": 150
+    },
+    {
+        "name": "ATGM Milan F1",
+        "type": "Inf",
+        "price": 10
+    },
+    {
+        "name": "ATGM Milan F2",
+        "type": "Inf",
+        "price": 20
+    },
+    {
+        "name": "FOB",
+        "type": "Log",
+        "price": 75
+    },
+    {
+        "name": "SAS",
+        "type": "Inf",
+        "price": 30
+    }
+]
