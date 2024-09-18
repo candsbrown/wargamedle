@@ -23,5 +23,15 @@
         "name": "SAS",
         "type": "Inf",
         "price": 30
+    },
+    {
+        "name": "M1 Abrams",
+        "type": "TNK",
+        "price": 65
+    },
+    {
+        "name": "M1IP Abrams",
+        "type": "TNK",
+        "price": 115
     }
 ]
