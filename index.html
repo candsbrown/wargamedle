@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mechdle</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Mechdle</h1>
+    <h2>Guess the Unit!</h2>
+
+    <div id="game-container">
+        <input type="text" id="guessInput" placeholder="Enter your guess">
+        <button onclick="checkGuess()">Submit Guess</button>
+        <button onclick="resetGame()">Reset Game</button>
+
+        <div id="feedback"></div>
+        <div id="hint"></div> <!-- This will now hold multiple hints -->
+        <div id="attempts">Attempts: 0</div>
+        <div id="guess-history-container">
+            <h3>Guess History</h3>
+            <ul id="guess-history"></ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f0f0;
+}
+
+#game-container {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 400px;
+    background-color: white;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+input, button {
+    padding: 10px;
+    margin: 10px;
+    font-size: 16px;
+}
+
+button {
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#feedback {
+    margin-top: 20px;
+    font-size: 18px;
+    min-height: 24px;
+}
+
+#hints {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.hint-item {
+    margin: 5px 0;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-left: 5px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #555;
+}
+
+.hint-item.correct-type {
+    border-left-color: green;
+}
+
+.hint-item.incorrect-type {
+    border-left-color: red;
+}
+
+.hint-item.correct-price {
+    border-left-color: green;
+}
+
+.hint-item.over-price {
+    border-left-color: red;
+}
+
+.hint-item.under-price {
+    border-left-color: red;
+}
+
+#guess-history-container {
+    margin-top: 20px;
+    text-align: left;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#guess-history {
+    list-style-type: none;
+    padding: 0;
+}
+
+.guess-item {
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f0f0f0;
+    border-left: 5px solid #ddd;
+    border-radius: 5px;
+}
+
+.guess-item .guess-text {
+    font-weight: bold;
+}
+
+.guess-item .hint-text {
+    margin-top: 5px;
+    color: #555;
+}
+
+#attempts {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #333;
+}
