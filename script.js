@@ -9,7 +9,7 @@ fetch('units.json')
     .then(response => response.json())
     .then(data => {
         units = data;
-        resetUnit(); // Initialize the game once the data is loaded
+        resetUnit(); // Initialize
     })
     .catch(error => {
         console.error("Error fetching the units:", error);
@@ -28,7 +28,6 @@ fetch('units.json')
     
         attempts++;
     
-        // Find the guessed unit
         const guessedUnit = units.find(game => game.name.toLowerCase() === guessInput.toLowerCase());
     
         // Clear previous hints
@@ -51,7 +50,7 @@ fetch('units.json')
                 guessHints.push(providePriceHint(guessedUnit.price));
             }
     
-            // Store the guess and hints in the guessHistory array
+            // Store guess and hints in the guessHistory array
             guessHistory.push({
                 guess: guessInput,
                 hints: guessHints
@@ -115,7 +114,7 @@ function providePriceHint(guessedPrice) {
         hintClass = "under-price";
     }
 
-    // Update the DOM (this is for the current guess)
+    // Update the DOM (this is also for the current guess)
     const hintItem = document.createElement('div');
     hintItem.className = `hint-item ${hintClass}`;
     hintItem.textContent = hintText;
@@ -141,7 +140,7 @@ function updateGuessHistory() {
         const guessItem = document.createElement('li');
         guessItem.className = "guess-item";
 
-        // Add the guess text
+        // Add guess as text
         const guessText = document.createElement('div');
         guessText.className = "guess-text";
         guessText.textContent = `Guess: ${item.guess}`;
@@ -161,7 +160,7 @@ function updateGuessHistory() {
 }
 
 
-// Function to reset the game
+// Function to reset the game (Currently not working)
 function resetUnit() {
     selectedUnit = units[Math.floor(Math.random() * units.length)];
     attempts = 0;
