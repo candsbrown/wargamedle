@@ -13,3 +13,12 @@ AH-64D Apache Longbow
 SAS
 
 ATGM Milan F1 and F2
+
+# Current Priorities
+*Get more stats like nation and accuracy implemented
+
+*Add more units
+
+*Restore reset functionality (attempt maximum stays disabled until the game is balanced around given information)
+
+*Make the game not an eyesore
