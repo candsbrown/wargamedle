@@ -1,74 +1,75 @@
-// List of units with their descriptors
-const units = [
-    { name: 'AH-64D Longbow', type: "Helo", price: 150},
-    { name: 'ATGM Milan F1', type: "Inf", price: 10},
-    { name: 'ATGM Milan F2', type: "Inf", price: 20},
-    { name: 'FOB', type: "Log", price: 75},
-    { name: 'SAS', type: "Inf", price: 30},
-    // Add more units as needed
-];
-
-// Pick a random unit from the list
-let selectedUnit = units[Math.floor(Math.random() * units.length)];
+let units = []; // Array to store units from JSON
+let selectedUnit;
 let attempts = 0;
-let guessHistory = []; // Store guesses and associated hints
-const maxAttempts = 5; // Define maximum attempts for hints
+let guessHistory = [];
+const maxAttempts = 5;
 
-// Function to check the user's guess
-function checkGuess() {
-    const guessInput = document.getElementById('guessInput').value.trim();
-    const feedback = document.getElementById('feedback');
-    const hintsContainer = document.getElementById('hint');
+// Fetch units from the JSON file
+fetch('units.json')
+    .then(response => response.json())
+    .then(data => {
+        units = data;
+        resetUnit(); // Initialize the game once the data is loaded
+    })
+    .catch(error => {
+        console.error("Error fetching the units:", error);
+    });
 
-    if (guessInput === "") {
-        feedback.textContent = "Please enter a unit name.";
-        feedback.style.color = "orange";
-        return;
-    }
-
-    attempts++;
-
-    // Find the guessed unit in the unit list
-    const guessedUnit = units.find(unit => unit.name.toLowerCase() === guessInput.toLowerCase());
-
-    // Clear previous hints
-    hintsContainer.innerHTML = "";
-
-    if (guessedUnit) {
-        let guessHints = [];
-
-        if (guessedUnit.name.toLowerCase() === selectedUnit.name.toLowerCase()) {
-            feedback.textContent = "🎉 Correct! You guessed the unit!";
-            feedback.style.color = "green";
-            hintsContainer.innerHTML = ""; // Clear hints if correct
-            guessHints.push("Correct Guess!");
-        } else {
-            feedback.textContent = "❌ Wrong guess. Try again!";
-            feedback.style.color = "red";
-
-            // Store both type and price hints in an array
-            guessHints.push(provideTypeHint(guessedUnit.type));
-            guessHints.push(providePriceHint(guessedUnit.price));
+    function checkGuess() {
+        const guessInput = document.getElementById('guessInput').value.trim();
+        const feedback = document.getElementById('feedback');
+        const hintsContainer = document.getElementById('hint'); // Container for current guess hints
+    
+        if (guessInput === "") {
+            feedback.textContent = "Please enter a unit name.";
+            feedback.style.color = "orange";
+            return;
         }
-
-        // Store the guess and hints in the guessHistory array
-        guessHistory.push({
-            guess: guessInput,
-            hints: guessHints
-        });
-
-        // Update the guess history UI
-        updateGuessHistory();
-    } else {
-        feedback.textContent = "❓ Unit not found in the list. Please try another unit.";
-        feedback.style.color = "orange";
+    
+        attempts++;
+    
+        // Find the guessed unit
+        const guessedUnit = units.find(game => game.name.toLowerCase() === guessInput.toLowerCase());
+    
+        // Clear previous hints
+        hintsContainer.innerHTML = "";
+    
+        if (guessedUnit) {
+            let guessHints = [];
+    
+            if (guessedUnit.name.toLowerCase() === selectedUnit.name.toLowerCase()) {
+                feedback.textContent = "🎉 Correct! You guessed the unit!";
+                feedback.style.color = "green";
+                hintsContainer.innerHTML = ""; // Clear hints if correct
+                guessHints.push("(You guessed the correct unit!)");
+            } else {
+                feedback.textContent = "❌ Wrong guess. Try again!";
+                feedback.style.color = "red";
+    
+                // Add type and price hints to guessHints array
+                guessHints.push(provideTypeHint(guessedUnit.type));
+                guessHints.push(providePriceHint(guessedUnit.price));
+            }
+    
+            // Store the guess and hints in the guessHistory array
+            guessHistory.push({
+                guess: guessInput,
+                hints: guessHints
+            });
+    
+            // Update the guess history UI
+            updateGuessHistory();
+    
+        } else {
+            feedback.textContent = "❓ Unit not found in the list. Please try another unit.";
+            feedback.style.color = "orange";
+        }
+    
+        // Clear the input field
+        document.getElementById('guessInput').value = "";
     }
 
-    // Clear the input field
-    document.getElementById('guessInput').value = "";
-}
-
-// Function to provide type-based hints
+// Function to provide type-based hints and update DOM
 function provideTypeHint(guessedType) {
     const selectedType = selectedUnit.type;
     const hintsContainer = document.getElementById('hint');
@@ -76,22 +77,25 @@ function provideTypeHint(guessedType) {
     let hintText = "";
     let hintClass = "";
 
+    // Determine type hint
     if (guessedType === selectedType) {
-        hintText = "Hint: Your guess is in the same unit type!";
+        hintText = "✅ Unit Type is correct.";
         hintClass = "correct-type";
     } else {
-        hintText = "Hint: Your guess is not the same unit type.";
+        hintText = "❌ Unit Type is incorrect.";
         hintClass = "incorrect-type";
     }
 
-    // Create and append the hint
+    // Update the DOM (this is for the current guess)
     const hintItem = document.createElement('div');
     hintItem.className = `hint-item ${hintClass}`;
     hintItem.textContent = hintText;
     hintsContainer.appendChild(hintItem);
+
+    return hintText; // Return the hint text for history
 }
 
-// Function to provide price-based hints
+// Function to provide price-based hints and update DOM
 function providePriceHint(guessedPrice) {
     const selectedPrice = selectedUnit.price;
     const hintsContainer = document.getElementById('hint');
@@ -99,17 +103,28 @@ function providePriceHint(guessedPrice) {
     let hintText = "";
     let hintClass = "";
 
+    // Determine price hint
     if (guessedPrice === selectedPrice) {
-        hintText = "Hint: Your guess is the same price!";
+        hintText = "✅ Price is correct.";
         hintClass = "correct-price";
     } else if (guessedPrice > selectedPrice) {
-        hintText = "Hint: Your guess is more expensive.";
+        hintText = "❌ Price is too high.";
         hintClass = "over-price";
     } else {
-        hintText = "Hint: Your guess is less expensive.";
+        hintText = "❌ Price is too low.";
         hintClass = "under-price";
     }
 
+    // Update the DOM (this is for the current guess)
+    const hintItem = document.createElement('div');
+    hintItem.className = `hint-item ${hintClass}`;
+    hintItem.textContent = hintText;
+    hintsContainer.appendChild(hintItem);
+
+    return hintText; // Return the hint text for history
+}
+
+{
     // Create and append the hint
     const hintItem = document.createElement('div');
     hintItem.className = `hint-item ${hintClass}`;
@@ -119,7 +134,7 @@ function providePriceHint(guessedPrice) {
 
 function updateGuessHistory() {
     const guessHistoryContainer = document.getElementById('guess-history');
-    guessHistoryContainer.innerHTML = ""; // Clear the current history
+    guessHistoryContainer.innerHTML = ""; // Clear current history
 
     guessHistory.forEach(item => {
         // Create a new list item for each guess
@@ -136,7 +151,7 @@ function updateGuessHistory() {
         item.hints.forEach(hint => {
             const hintText = document.createElement('div');
             hintText.className = "hint-text";
-            hintText.textContent = hint;
+            hintText.textContent = hint;  // Correctly shows hint text now
             guessItem.appendChild(hintText);
         });
 
@@ -144,6 +159,7 @@ function updateGuessHistory() {
         guessHistoryContainer.appendChild(guessItem);
     });
 }
+
 
 // Function to reset the game
 function resetUnit() {
