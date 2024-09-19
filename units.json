@@ -1,7 +1,98 @@
 [
+    
+    {
+        "name": "M114A1",
+        "type": "Log",
+        "price": 115
+    },
+    {
+        "name": "M577 CPC",
+        "type": "Log",
+        "price": 120
+    },
+    {
+        "name": "CMD M60A1",
+        "type": "Log",
+        "price": 140
+    },
+    {
+        "name": "CMD M1 Abrams",
+        "type": "Log",
+        "price": 160
+    },
+    {
+        "name": "M151A1 CP",
+        "type": "Log",
+        "price": 100
+    },
+    {
+        "name": "M1025 CP",
+        "type": "Log",
+        "price": 110
+    },
+    {
+        "name": "LAV-C2 CP",
+        "type": "Log",
+        "price": 120
+    },
+    {
+        "name": "TACOM",
+        "type": "Log",
+        "price": 100
+    },
+    {
+        "name": "UH-1A ACP",
+        "type": "Log",
+        "price": 100
+    },
+    {
+        "name": "CH-47C Super Chinook",
+        "type": "Log",
+        "price": 55
+    },
+    {
+        "name": "CH-53E Super Stallion",
+        "type": "Log",
+        "price": 75
+    },
+    {
+        "name": "M35 Cargo",
+        "type": "Log",
+        "price": 15
+    },
+    {
+        "name": "HEMTT",
+        "type": "Log",
+        "price": 40
+    },
+    {
+        "name": "M1 Abrams",
+        "type": "TNK",
+        "price": 65
+    },
+    {
+        "name": "M1IP Abrams",
+        "type": "TNK",
+        "price": 80
+    },
+    {
+        "name": "M1A1 Abrams",
+        "type": "TNK",
+        "price": 115
+    },
+    {
+        "name": "M1A1(HA) Abrams",
+        "type": "TNK",
+        "price": 140
+    },
+    {
+        "name": "M1A2 Abrams",
+        "type": "TNK",
+        "price": 180
+    },
     {
         "name": "AH-64D Longbow",
-        "type": "Helo",
+        "type": "Hel",
         "price": 150
     },
     {
@@ -15,23 +106,8 @@
         "price": 20
     },
     {
-        "name": "FOB",
-        "type": "Log",
-        "price": 75
-    },
-    {
         "name": "SAS",
         "type": "Inf",
         "price": 30
-    },
-    {
-        "name": "M1 Abrams",
-        "type": "TNK",
-        "price": 65
-    },
-    {
-        "name": "M1IP Abrams",
-        "type": "TNK",
-        "price": 115
     }
 ]
