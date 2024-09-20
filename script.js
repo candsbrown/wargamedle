@@ -1,8 +1,8 @@
 let units = []; // Array to store units from JSON
 let selectedUnit;
 let attempts = 0;
-let guessHistory = [];
 let hintClass = "";
+let guessHistory = [];
 const maxAttempts = 5;
 
 // Fetch units from the JSON file
@@ -116,7 +116,7 @@ function providePriceHint(guessedPrice) {
         hintClass = "under-price";
     }
 
-    // Update the DOM for current guess unit price
+    // Create and append the hint
     const hintItem = document.createElement('div');
     hintItem.className = `hint-item ${hintClass}`;
     hintItem.textContent = hintText;
@@ -125,13 +125,6 @@ function providePriceHint(guessedPrice) {
     return hintText; // Return the hint text for history
 }
 
-{
-    // Create and append the hint
-    const hintItem = document.createElement('div');
-    hintItem.className = `hint-item ${hintClass}`;
-    hintItem.textContent = hintText;
-    hintsContainer.appendChild(hintItem);
-}
 
 function updateGuessHistory() {
     const guessHistoryContainer = document.getElementById('guess-history');
@@ -206,4 +199,17 @@ function resetUnit() {
     document.getElementById('hint').innerHTML = ""; // Clear hints
     document.getElementById('guessInput').value = "";
     document.getElementById('attempts').textContent = `Attempts: ${attempts}`;
-}1
+}
+
+// Debounce auto-complete
+function debounce(func, delay) {
+    let debounceTimer;
+    return function() {
+        const context = this;
+        const args = arguments;
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => func.apply(context, args), delay);
+    }
+}
+
+document.getElementById('guessInput').addEventListener('input', debounce(showSuggestions, 300));
