@@ -21,6 +21,4 @@ ATGM Milan F1 and F2
 
 *Add more units
 
-*Restore reset functionality (attempt maximum stays disabled until the game is balanced around given information)
-
 *Make the game not an eyesore
