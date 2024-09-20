@@ -1,4 +1,7 @@
 # Updates
+# 9-20-2024:
+
+*Reset button has been fixed
 # 9-19-2024 (2): 
 
 *Added auto-complete functionality to the search bar. Should significantly speed up guess submission and prevent typos, though a second pass may be needed for optimization with a large unit list.
