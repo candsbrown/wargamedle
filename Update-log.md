@@ -1,7 +1,7 @@
 # Updates
 # 9-19-2024 (2): 
 
-*Added auto-complete functionality to the search bar. Should speed up guess submission, though a second pass may for optimization with a large unit list.
+*Added auto-complete functionality to the search bar. Should significantly speed up guess submission and prevent typos, though a second pass may be needed for optimization with a large unit list.
 
 *Added US Infantry Tab.
 
