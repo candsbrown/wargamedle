@@ -2,6 +2,7 @@ let units = []; // Array to store units from JSON
 let selectedUnit;
 let attempts = 0;
 let guessHistory = [];
+let hintClass = "";
 const maxAttempts = 5;
 
 // Fetch units from the JSON file
