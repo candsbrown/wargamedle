@@ -191,15 +191,27 @@ document.addEventListener('click', function(event) {
     }
 });
 
-// Function to reset the game
+/// Reset
 function resetUnit() {
+    // New unit
     selectedUnit = units[Math.floor(Math.random() * units.length)];
+    
+    // Reset game state
     attempts = 0;
+    guessHistory = [];
+
+    // Clear feedback
     document.getElementById('feedback').textContent = "";
-    document.getElementById('hint').innerHTML = ""; // Clear hints
+    document.getElementById('hint').innerHTML = "";
     document.getElementById('guessInput').value = "";
+    document.getElementById('guess-history').innerHTML = "";
     document.getElementById('attempts').textContent = `Attempts: ${attempts}`;
+
+    // Feedback (So ik when the button breaks again)
+    feedback.textContent = "Game has been reset! Try a new unit.";
+    feedback.style.color = "blue";
 }
+
 
 // Debounce auto-complete
 function debounce(func, delay) {
