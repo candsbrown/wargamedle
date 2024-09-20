@@ -106,3 +106,22 @@ button:hover {
     margin-left: 10px;
     font-size: 14px;
 }
+#suggestions-container {
+    border: 1px solid #ddd;
+    max-height: 150px;
+    overflow-y: auto;
+    position: relative;
+    background-color: #fff;
+    width: 100%;
+}
+
+.suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #ddd;
+}
+
+.suggestion-item:hover {
+    background-color: #f0f0f0;
+}
