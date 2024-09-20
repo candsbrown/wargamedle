@@ -9,7 +9,7 @@ fetch('units.json')
     .then(response => response.json())
     .then(data => {
         units = data;
-        resetUnit(); // Initialize
+        resetUnit(); // Initialize the game once the data is loaded
     })
     .catch(error => {
         console.error("Error fetching the units:", error);
@@ -28,6 +28,7 @@ fetch('units.json')
     
         attempts++;
     
+        // Find the guessed unit
         const guessedUnit = units.find(game => game.name.toLowerCase() === guessInput.toLowerCase());
     
         // Clear previous hints
@@ -50,7 +51,7 @@ fetch('units.json')
                 guessHints.push(providePriceHint(guessedUnit.price));
             }
     
-            // Store guess and hints in the guessHistory array
+            // Store the guess and hints in the guessHistory array
             guessHistory.push({
                 guess: guessInput,
                 hints: guessHints
@@ -85,7 +86,7 @@ function provideTypeHint(guessedType) {
         hintClass = "incorrect-type";
     }
 
-    // Update the DOM (this is for the current guess)
+    // Update the DOM for current guess unit type
     const hintItem = document.createElement('div');
     hintItem.className = `hint-item ${hintClass}`;
     hintItem.textContent = hintText;
@@ -114,7 +115,7 @@ function providePriceHint(guessedPrice) {
         hintClass = "under-price";
     }
 
-    // Update the DOM (this is also for the current guess)
+    // Update the DOM for current guess unit price
     const hintItem = document.createElement('div');
     hintItem.className = `hint-item ${hintClass}`;
     hintItem.textContent = hintText;
@@ -140,7 +141,7 @@ function updateGuessHistory() {
         const guessItem = document.createElement('li');
         guessItem.className = "guess-item";
 
-        // Add guess as text
+        // Add the guess text
         const guessText = document.createElement('div');
         guessText.className = "guess-text";
         guessText.textContent = `Guess: ${item.guess}`;
@@ -158,9 +159,45 @@ function updateGuessHistory() {
         guessHistoryContainer.appendChild(guessItem);
     });
 }
+// Auto-complete
+function showSuggestions() {
+    const input = document.getElementById('guessInput').value.toLowerCase();
+    const suggestionsContainer = document.getElementById('suggestions-container');
+    
+    // Clear previous suggestion
+    suggestionsContainer.innerHTML = "";
 
+    if (input === "") {
+        return; // Don't show suggestions if input is empty
+    }
 
-// Function to reset the game (Currently not working)
+    // Filter units based on input
+    const filteredUnits = units.filter(unit => unit.name.toLowerCase().startsWith(input));
+
+    // Show suggestions
+    filteredUnits.forEach(unit => {
+        const suggestionItem = document.createElement('div');
+        suggestionItem.className = 'suggestion-item';
+        suggestionItem.textContent = unit.name;
+
+        // Fill field on click
+        suggestionItem.onclick = function() {
+            document.getElementById('guessInput').value = unit.name;
+            suggestionsContainer.innerHTML = ""; // Clear suggestions after selection
+        };
+
+        suggestionsContainer.appendChild(suggestionItem);
+    });
+}
+
+// Remove auto-complete dropdown
+document.addEventListener('click', function(event) {
+    if (!event.target.matches('#guessInput')) {
+        document.getElementById('suggestions-container').innerHTML = "";
+    }
+});
+
+// Function to reset the game
 function resetUnit() {
     selectedUnit = units[Math.floor(Math.random() * units.length)];
     attempts = 0;
@@ -168,4 +205,4 @@ function resetUnit() {
     document.getElementById('hint').innerHTML = ""; // Clear hints
     document.getElementById('guessInput').value = "";
     document.getElementById('attempts').textContent = `Attempts: ${attempts}`;
-}
+}1
