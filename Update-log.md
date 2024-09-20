@@ -1,4 +1,11 @@
 # Updates
+# 9-19-2024 (2): 
+
+*Added auto-complete functionality to the search bar. Should speed up guess submission, though a second pass may for optimization with a large unit list.
+
+*Added US Infantry Tab.
+
+*Cleaned up the JS script a little. Still rough, but slightly better.
 # 9-19-2024: 
 
 *Added US Logistics Tab, removed FOB. 
