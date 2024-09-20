@@ -66,6 +66,66 @@
         "price": 40
     },
     {
+        "name": "Assault Engineers",
+        "type": "Inf",
+        "price": 15
+    },
+    {
+        "name": "Delta Force",
+        "type": "Inf",
+        "price": 30
+    },
+    {
+        "name": "LAAD Redeye",
+        "type": "Inf",
+        "price": 10
+    },
+    {
+        "name": "LAAD Stinger A",
+        "type": "Inf",
+        "price": 15
+    },
+    {
+        "name": "LAAD Stinger C",
+        "type": "Inf",
+        "price": 20
+    },
+    {
+        "name": "Light Rifleman",
+        "type": "Inf",
+        "price": 10
+    },
+    {
+        "name": "Light Rifleman '90",
+        "type": "Inf",
+        "price": 20
+    },
+    {
+        "name": "Rifleman",
+        "type": "Inf",
+        "price": 10
+    },
+    {
+        "name": "Rifleman '90",
+        "type": "Inf",
+        "price": 15
+    },
+    {
+        "name": "SMAW",
+        "type": "Inf",
+        "price": 20
+    },
+    {
+        "name": "US Marines",
+        "type": "Inf",
+        "price": 20
+    },
+    {
+        "name": "US Marines '90",
+        "type": "Inf",
+        "price": 30
+    },
+    {
         "name": "M1 Abrams",
         "type": "TNK",
         "price": 65
