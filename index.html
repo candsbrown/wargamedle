@@ -11,7 +11,8 @@
     <h2>Guess the Unit!</h2>
 
     <div id="game-container">
-        <input type="text" id="guessInput" placeholder="Enter your guess">
+        <input type="text" id="guessInput" placeholder="Enter your guess" oninput="showSuggestions()">
+        <div id="suggestions-container"></div> <!-- Auto-complete box -->
         <button onclick="checkGuess()">Submit Guess</button>
         <button onclick="resetGame()">Reset Game</button>
 
