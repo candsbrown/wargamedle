@@ -2,171 +2,205 @@
     
     {
         "name": "M114A1",
+        "nation": "US",
         "type": "Log",
         "price": 115
     },
     {
         "name": "M577 CPC",
+        "nation": "US",
         "type": "Log",
         "price": 120
     },
     {
         "name": "CMD M60A1",
+        "nation": "US",
         "type": "Log",
         "price": 140
     },
     {
         "name": "CMD M1 Abrams",
+        "nation": "US",
         "type": "Log",
         "price": 160
     },
     {
         "name": "M151A1 CP",
+        "nation": "US",
         "type": "Log",
         "price": 100
     },
     {
         "name": "M1025 CP",
+        "nation": "US",
         "type": "Log",
         "price": 110
     },
     {
         "name": "LAV-C2",
+        "nation": "US",
         "type": "Log",
         "price": 120
     },
     {
         "name": "TACOM",
+        "nation": "US",
         "type": "Log",
         "price": 100
     },
     {
         "name": "UH-1A ACP",
+        "nation": "US",
         "type": "Log",
         "price": 100
     },
     {
         "name": "CH-47C Super Chinook",
+        "nation": "US",
         "type": "Log",
         "price": 55
     },
     {
         "name": "CH-53E Super Stallion",
+        "nation": "US",
         "type": "Log",
         "price": 75
     },
     {
         "name": "M35 Cargo",
+        "nation": "US",
         "type": "Log",
         "price": 15
     },
     {
         "name": "HEMTT",
+        "nation": "US",
         "type": "Log",
         "price": 40
     },
     {
         "name": "Assault Engineers",
+        "nation": "US",
         "type": "Inf",
         "price": 15
     },
     {
         "name": "Delta Force",
+        "nation": "US",
         "type": "Inf",
         "price": 30
     },
     {
         "name": "LAAD Redeye",
+        "nation": "US",
         "type": "Inf",
         "price": 10
     },
     {
         "name": "LAAD Stinger A",
+        "nation": "US",
         "type": "Inf",
         "price": 15
     },
     {
         "name": "LAAD Stinger C",
+        "nation": "US",
         "type": "Inf",
         "price": 20
     },
     {
         "name": "Light Rifleman",
+        "nation": "US",
         "type": "Inf",
         "price": 10
     },
     {
         "name": "Light Rifleman '90",
+        "nation": "US",
         "type": "Inf",
         "price": 20
     },
     {
         "name": "Rifleman",
+        "nation": "US",
         "type": "Inf",
         "price": 10
     },
     {
         "name": "Rifleman '90",
+        "nation": "US",
         "type": "Inf",
         "price": 15
     },
     {
         "name": "SMAW",
+        "nation": "US",
         "type": "Inf",
         "price": 20
     },
     {
         "name": "US Marines",
+        "nation": "US",
         "type": "Inf",
         "price": 20
     },
     {
         "name": "US Marines '90",
+        "nation": "US",
         "type": "Inf",
         "price": 30
     },
     {
         "name": "M1 Abrams",
+        "nation": "US",
         "type": "TNK",
         "price": 65
     },
     {
         "name": "M1IP Abrams",
+        "nation": "US",
         "type": "TNK",
         "price": 80
     },
     {
         "name": "M1A1 Abrams",
+        "nation": "US",
         "type": "TNK",
         "price": 115
     },
     {
         "name": "M1A1(HA) Abrams",
+        "nation": "US",
         "type": "TNK",
         "price": 140
     },
     {
         "name": "M1A2 Abrams",
+        "nation": "US",
         "type": "TNK",
         "price": 180
     },
     {
         "name": "AH-64D Longbow",
+        "nation": "US",
         "type": "Hel",
         "price": 150
     },
     {
         "name": "ATGM Milan F1",
+        "nation": "France",
         "type": "Inf",
         "price": 10
     },
     {
         "name": "ATGM Milan F2",
+        "nation": "France",
         "type": "Inf",
         "price": 20
     },
     {
         "name": "SAS",
+        "nation": "UK",
         "type": "Inf",
         "price": 30
     }
