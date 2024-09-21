@@ -17,7 +17,7 @@ ATGM Milan F1 and F2
 # Current Priorities
 *QOL stuff
 
-*Get more stats like nation and accuracy implemented
+*Get more stats like FAV and accuracy implemented
 
 *Add more units
 
