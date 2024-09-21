@@ -50,6 +50,7 @@ fetch('units.json')
                 // Add type and price hints to guessHints array
                 guessHints.push(provideTypeHint(guessedUnit.type));
                 guessHints.push(providePriceHint(guessedUnit.price));
+                guessHints.push(provideNationHint(guessedUnit.nation));
             }
     
             // Store the guess and hints in the guessHistory array
@@ -117,6 +118,32 @@ function providePriceHint(guessedPrice) {
     }
 
     // Create and append the hint
+    const hintItem = document.createElement('div');
+    hintItem.className = `hint-item ${hintClass}`;
+    hintItem.textContent = hintText;
+    hintsContainer.appendChild(hintItem);
+
+    return hintText; // Return the hint text for history
+}
+
+// Function to provide nation-based hints and update DOM
+function provideNationHint(guessedType) {
+    const selectedNation = selectedUnit.nation;
+    const hintsContainer = document.getElementById('hint');
+
+    let hintText = "";
+    let hintClass = "";
+
+    // Determine type hint
+    if (guessedType === selectedNation) {
+        hintText = "✅ Unit Nation is correct.";
+        hintClass = "correct-type";
+    } else {
+        hintText = "❌ Unit Nation is incorrect.";
+        hintClass = "incorrect-type";
+    }
+
+    // Update the DOM for current guess unit nation
     const hintItem = document.createElement('div');
     hintItem.className = `hint-item ${hintClass}`;
     hintItem.textContent = hintText;
