@@ -1,4 +1,9 @@
 # Updates
+# 9-21-2024:
+
+*Added nation tag functionality to game. Stealth, accuracy and FAV may all be good additional tags, though accuracy will not always be 1st weapon.
+
+*Added nation tags to all existing units. Not very useful since predominately US (they're the first in the armory tab). Next drop will be support tab for another country to test new tag.
 # 9-20-2024:
 
 *Reset button has been fixed
