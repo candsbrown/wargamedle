@@ -51,6 +51,7 @@ fetch('units.json')
                 guessHints.push(provideTypeHint(guessedUnit.type));
                 guessHints.push(providePriceHint(guessedUnit.price));
                 guessHints.push(provideNationHint(guessedUnit.nation));
+                guessHints.push(provideFAVHint(guessedUnit.fav));
             }
     
             // Store the guess and hints in the guessHistory array
@@ -71,7 +72,7 @@ fetch('units.json')
         document.getElementById('guessInput').value = "";
     }
 
-// Function to provide type-based hints and update DOM
+// Function to provide type-based hints
 function provideTypeHint(guessedType) {
     const selectedType = selectedUnit.type;
     const hintsContainer = document.getElementById('hint');
@@ -88,7 +89,7 @@ function provideTypeHint(guessedType) {
         hintClass = "incorrect-type";
     }
 
-    // Update the DOM for current guess unit type
+    // Update the DOM
     const hintItem = document.createElement('div');
     hintItem.className = `hint-item ${hintClass}`;
     hintItem.textContent = hintText;
@@ -97,7 +98,7 @@ function provideTypeHint(guessedType) {
     return hintText; // Return the hint text for history
 }
 
-// Function to provide price-based hints and update DOM
+// Function to provide price-based hints
 function providePriceHint(guessedPrice) {
     const selectedPrice = selectedUnit.price;
     const hintsContainer = document.getElementById('hint');
@@ -126,7 +127,7 @@ function providePriceHint(guessedPrice) {
     return hintText; // Return the hint text for history
 }
 
-// Function to provide nation-based hints and update DOM
+// Function to provide nation-based hints
 function provideNationHint(guessedType) {
     const selectedNation = selectedUnit.nation;
     const hintsContainer = document.getElementById('hint');
@@ -143,7 +144,36 @@ function provideNationHint(guessedType) {
         hintClass = "incorrect-type";
     }
 
-    // Update the DOM for current guess unit nation
+    // Update the DOM
+    const hintItem = document.createElement('div');
+    hintItem.className = `hint-item ${hintClass}`;
+    hintItem.textContent = hintText;
+    hintsContainer.appendChild(hintItem);
+
+    return hintText; // Return the hint text for history
+}
+
+// Function to provide FAV-based hints
+function provideFAVHint(guessedFAV) {
+    const selectedFAV = selectedUnit.fav;
+    const hintsContainer = document.getElementById('hint');
+
+    let hintText = "";
+    let hintClass = "";
+
+    // Determine type hint
+    if (guessedFAV === selectedFAV) {
+        hintText = "✅ FAV is correct.";
+        hintClass = "correct-type";
+    } else if (guessedFAV > selectedFAV) {
+        hintText = "❌ FAV is too high.";
+        hintClass = "incorrect-type";
+    } else {
+        hintText = "❌ FAV is too low.";
+        hintClass = "incorrect-type";
+    }
+
+    // Update the DOM
     const hintItem = document.createElement('div');
     hintItem.className = `hint-item ${hintClass}`;
     hintItem.textContent = hintText;
