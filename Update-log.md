@@ -1,4 +1,13 @@
 # Updates
+# 9-24-2024:
+
+*Added FAV tag to game. Accuracy should be next, though need to figure out where it will go on some units.
+
+*Added FAV tag to all units.
+
+*Added UK Support tab to better test nation tag.
+
+*Fixed AH-64D Longbow incorrectly being tagged as helo instead of recon
 # 9-21-2024:
 
 *Added nation tag functionality to game. Stealth, accuracy and FAV may all be good additional tags, though accuracy will not always be 1st weapon.
