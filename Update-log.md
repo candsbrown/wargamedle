@@ -1,4 +1,7 @@
 # Updates
+# 9-26-2024:
+
+*Added UK Recon tab to game.
 # 9-24-2024:
 
 *Added FAV tag to game. Accuracy should be next, though need to figure out where it will go on some units.
