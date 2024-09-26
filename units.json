@@ -218,6 +218,13 @@
         "price": 150
     },
     {
+        "name": "SAS",
+        "nation": "UK",
+        "type": "Inf",
+        "fav": 1,
+        "price": 30
+    },
+    {
         "name": "FV432(M)",
         "nation": "UK",
         "type": "Sup",
@@ -309,10 +316,73 @@
         "price": 55
     },
     {
-        "name": "SAS",
+        "name": "FV101 Scorpion",
         "nation": "UK",
-        "type": "Inf",
+        "type": "Rec",
+        "fav": 2,
+        "price": 20
+    },
+    {
+        "name": "FV107 Scimitar",
+        "nation": "UK",
+        "type": "Rec",
+        "fav": 2,
+        "price": 15
+    },
+    {
+        "name": "FV217 Fox",
+        "nation": "UK",
+        "type": "Rec",
         "fav": 1,
+        "price": 20
+    },
+    {
+        "name": "FV712 Ferret",
+        "nation": "UK",
+        "type": "Rec",
+        "fav": 1,
+        "price": 45
+    },
+    {
+        "name": "FV701 Ferret",
+        "nation": "UK",
+        "type": "Rec",
+        "fav": 1,
+        "price": 10
+    },
+    {
+        "name": "Rover Pinky",
+        "nation": "UK",
+        "type": "Rec",
+        "fav": 0,
+        "price": 45
+    },
+    {
+        "name": "Gazelle AH.1",
+        "nation": "UK",
+        "type": "Rec",
+        "fav": 0,
+        "price": 65
+    },
+    {
+        "name": "Gazelle AH.1 SNEB",
+        "nation": "UK",
+        "type": "Rec",
+        "fav": 0,
+        "price": 75
+    },
+    {
+        "name": "Green Jacket",
+        "nation": "UK",
+        "type": "Rec",
+        "fav": 0,
+        "price": 20
+    },
+    {
+        "name": "SBS",
+        "nation": "UK",
+        "type": "Rec",
+        "fav": 0,
         "price": 30
     },
     {
