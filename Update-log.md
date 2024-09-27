@@ -8,6 +8,8 @@
 *Re-ordered page for the time being. Still bad, but important information should be always available, and the guess history should have the most recent guess at the top of the list, not the bottom.
 
 *Fixed ATGM Milan teams having an armor value of 1 instead of 0.
+
+*Dimmed the page to a gray for now. I'll do another pass of the colors at some point.
 # 9-27-2024:
 
 *Finished adding US Tank tab.
