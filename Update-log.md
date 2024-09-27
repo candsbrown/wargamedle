@@ -9,7 +9,7 @@
 
 *Fixed ATGM Milan teams having an armor value of 1 instead of 0.
 
-*Dimmed the page to a gray for now. I'll do another pass of the colors at some point.
+*Dimmed the page to a gray for now, and changed color of some text. I'll do another pass at it eventually, but the goal is function still.
 # 9-27-2024:
 
 *Finished adding US Tank tab.
