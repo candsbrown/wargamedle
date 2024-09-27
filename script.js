@@ -3,6 +3,12 @@ let selectedUnit;
 let attempts = 0;
 let hintClass = "";
 let guessHistory = [];
+let correctGuesses = {
+    type: null,
+    price: null,
+    nation: null,
+    fav: null
+};
 const maxAttempts = 5;
 
 // Fetch units from the JSON file
@@ -72,7 +78,7 @@ fetch('units.json')
         document.getElementById('guessInput').value = "";
     }
 
-// Function to provide type-based hints
+// Function to provide type-based hints and update DOM
 function provideTypeHint(guessedType) {
     const selectedType = selectedUnit.type;
     const hintsContainer = document.getElementById('hint');
@@ -82,19 +88,21 @@ function provideTypeHint(guessedType) {
 
     // Determine type hint
     if (guessedType === selectedType) {
-        hintText = "✅ Unit Type is correct.";
+        hintText = `✅ Unit Type ${guessedType} is correct.`;
         hintClass = "correct-type";
+        correctGuesses.type = guessedType;
     } else {
-        hintText = "❌ Unit Type is incorrect.";
+        hintText = `❌ Unit Type ${guessedType} is incorrect.`;
         hintClass = "incorrect-type";
     }
 
-    // Update the DOM
+    // Update the DOM for current guess unit type
     const hintItem = document.createElement('div');
     hintItem.className = `hint-item ${hintClass}`;
     hintItem.textContent = hintText;
     hintsContainer.appendChild(hintItem);
 
+    updateGuessSummary();
     return hintText; // Return the hint text for history
 }
 
@@ -108,13 +116,14 @@ function providePriceHint(guessedPrice) {
 
     // Determine price hint
     if (guessedPrice === selectedPrice) {
-        hintText = "✅ Price is correct.";
+        hintText = `✅ Price of ${guessedPrice} is correct.`;
         hintClass = "correct-price";
+        correctGuesses.price = guessedPrice;
     } else if (guessedPrice > selectedPrice) {
-        hintText = "❌ Price is too high.";
+        hintText = `❌ Price of ${guessedPrice} is too high.`;
         hintClass = "over-price";
     } else {
-        hintText = "❌ Price is too low.";
+        hintText = `❌ Price of ${guessedPrice} is too low.`;
         hintClass = "under-price";
     }
 
@@ -124,11 +133,12 @@ function providePriceHint(guessedPrice) {
     hintItem.textContent = hintText;
     hintsContainer.appendChild(hintItem);
 
+    updateGuessSummary();
     return hintText; // Return the hint text for history
 }
 
 // Function to provide nation-based hints
-function provideNationHint(guessedType) {
+function provideNationHint(guessedNation) {
     const selectedNation = selectedUnit.nation;
     const hintsContainer = document.getElementById('hint');
 
@@ -136,20 +146,22 @@ function provideNationHint(guessedType) {
     let hintClass = "";
 
     // Determine type hint
-    if (guessedType === selectedNation) {
-        hintText = "✅ Unit Nation is correct.";
-        hintClass = "correct-type";
+    if (guessedNation === selectedNation) {
+        hintText = `✅ Unit Nation ${guessedNation} is correct.`;
+        hintClass = "correct-nation";
+        correctGuesses.nation = guessedNation;
     } else {
-        hintText = "❌ Unit Nation is incorrect.";
-        hintClass = "incorrect-type";
+        hintText = `❌ Unit Nation ${guessedNation} is incorrect.`;
+        hintClass = "incorrect-nation";
     }
 
-    // Update the DOM
+    // Update the DOM for current guess unit nation
     const hintItem = document.createElement('div');
     hintItem.className = `hint-item ${hintClass}`;
     hintItem.textContent = hintText;
     hintsContainer.appendChild(hintItem);
 
+    updateGuessSummary();
     return hintText; // Return the hint text for history
 }
 
@@ -161,16 +173,17 @@ function provideFAVHint(guessedFAV) {
     let hintText = "";
     let hintClass = "";
 
-    // Determine type hint
+    // Determine FAV hint
     if (guessedFAV === selectedFAV) {
-        hintText = "✅ FAV is correct.";
-        hintClass = "correct-type";
+        hintText = `✅ FAV of ${guessedFAV} is correct.`;
+        hintClass = "correct-fav";
+        correctGuesses.fav = guessedFAV;
     } else if (guessedFAV > selectedFAV) {
-        hintText = "❌ FAV is too high.";
-        hintClass = "incorrect-type";
+        hintText = `❌ FAV of ${guessedFAV} is too high.`;
+        hintClass = "over-fav"; // Thinking about it, over-under might be unnecessary. Might just rephrase to correct and incorrect for any stats with integers later.
     } else {
-        hintText = "❌ FAV is too low.";
-        hintClass = "incorrect-type";
+        hintText = `❌ FAV of ${guessedFAV} is too low.`;
+        hintClass = "under-fav";
     }
 
     // Update the DOM
@@ -179,9 +192,34 @@ function provideFAVHint(guessedFAV) {
     hintItem.textContent = hintText;
     hintsContainer.appendChild(hintItem);
 
+    updateGuessSummary();
     return hintText; // Return the hint text for history
 }
 
+function updateGuessSummary() {
+    const summaryType = document.getElementById('summary-type');
+    const summaryPrice = document.getElementById('summary-price');
+    const summaryNation = document.getElementById('summary-nation');
+    const summaryFAV = document.getElementById('summary-fav');
+
+    // Update each element if it was correct
+    if (correctGuesses.type) {
+        summaryType.textContent = `Type: ${correctGuesses.type}`;
+        summaryType.classList.add("correct-summary");
+    }
+    if (correctGuesses.price) {
+        summaryPrice.textContent = `Price: ${correctGuesses.price}`;
+        summaryPrice.classList.add("correct-summary");
+    }
+    if (correctGuesses.nation) {
+        summaryNation.textContent = `Nation: ${correctGuesses.nation}`;
+        summaryNation.classList.add("correct-summary");
+    }
+    if (correctGuesses.fav !== null && correctGuesses.fav !== undefined) {
+        summaryFAV.textContent = `FAV: ${correctGuesses.fav}`;
+        summaryFAV.classList.add("correct-summary");
+    }
+}
 
 function updateGuessHistory() {
     const guessHistoryContainer = document.getElementById('guess-history');
@@ -250,9 +288,29 @@ document.addEventListener('click', function(event) {
 
 /// Reset
 function resetUnit() {
-    // New unit
+    // Select a new random unit
     selectedUnit = units[Math.floor(Math.random() * units.length)];
-    
+
+    // Clear guess summary
+    correctGuesses = {
+        type: null,
+        price: null,
+        nation: null,
+        fav: null
+    };
+
+    // Reset summary elements
+    document.getElementById('summary-type').textContent = "Type: Unknown";
+    document.getElementById('summary-price').textContent = "Price: Unknown";
+    document.getElementById('summary-nation').textContent = "Nation: Unknown";
+    document.getElementById('summary-fav').textContent = "FAV: Unknown";
+
+    // Clear previous highlights (if you are adding classes like "correct-summary")
+    document.getElementById('summary-type').classList.remove("correct-summary");
+    document.getElementById('summary-price').classList.remove("correct-summary");
+    document.getElementById('summary-nation').classList.remove("correct-summary");
+    document.getElementById('summary-fav').classList.remove("correct-summary");
+
     // Reset game state
     attempts = 0;
     guessHistory = [];
@@ -264,7 +322,8 @@ function resetUnit() {
     document.getElementById('guess-history').innerHTML = "";
     document.getElementById('attempts').textContent = `Attempts: ${attempts}`;
 
-    // Feedback (So ik when the button breaks again)
+    // Feedback to show that the game has reset
+    const feedback = document.getElementById('feedback');
     feedback.textContent = "Game has been reset! Try a new unit.";
     feedback.style.color = "blue";
 }
