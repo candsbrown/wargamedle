@@ -4,6 +4,18 @@ body {
     background-color: #2c2c2c;
 }
 
+h1 {
+    color: #ccc;
+}
+
+h2 {
+    color: #ccc;
+} 
+
+h3 {
+    color: #ccc;
+}
+
 #game-container {
     margin: 20px auto;
     padding: 20px;
