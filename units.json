@@ -211,6 +211,97 @@
         "price": 180
     },
     {
+        "name": "M48A5 USMC",
+        "nation": "US",
+        "type": "TNK",
+        "fav": 6,
+        "price": 20
+    },
+    {
+        "name": "M60A1 USMC",
+        "nation": "US",
+        "type": "TNK",
+        "fav": 9,
+        "price": 35
+    },
+    {
+        "name": "M60A1 AOS",
+        "nation": "US",
+        "type": "TNK",
+        "fav": 9,
+        "price": 40
+    },
+    {
+        "name": "M60A1 ERA",
+        "nation": "US",
+        "type": "TNK",
+        "fav": 12,
+        "price": 60
+    },
+    {
+        "name": "M1A1(HC) Abrams",
+        "nation": "US",
+        "type": "TNK",
+        "fav": 20,
+        "price": 155
+    },
+    {
+        "name": "M551A1 Sheridan",
+        "nation": "US",
+        "type": "TNK",
+        "fav": 2,
+        "price": 35
+    },
+    {
+        "name": "M8 AGS",
+        "nation": "US",
+        "type": "TNK",
+        "fav": 3,
+        "price": 55
+    },
+    {
+        "name": "M60A1 Rise Patton",
+        "nation": "US",
+        "type": "TNK",
+        "fav": 9,
+        "price": 40
+    },
+    {
+        "name": "M60A3 Patton",
+        "nation": "US",
+        "type": "TNK",
+        "fav": 10,
+        "price": 50
+    },
+    {
+        "name": "Super M60",
+        "nation": "US",
+        "type": "TNK",
+        "fav": 13,
+        "price": 60
+    },
+    {
+        "name": "M60A2E1 Starship",
+        "nation": "US",
+        "type": "TNK",
+        "fav": 10,
+        "price": 35
+    },
+    {
+        "name": "M60A2E2 Starship",
+        "nation": "US",
+        "type": "TNK",
+        "fav": 10,
+        "price": 40
+    },
+    {
+        "name": "MBT-70",
+        "nation": "US",
+        "type": "TNK",
+        "fav": 12,
+        "price": 60
+    },
+    {
         "name": "AH-64D Longbow",
         "nation": "US",
         "type": "Rec",
