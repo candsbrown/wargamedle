@@ -16,6 +16,7 @@ ATGM Milan F1 and F2
 
 # Current Priorities
 *QOL stuff
+     
      *Better feedback for hints
      *Cleaned up hint UI
 
