@@ -17,7 +17,7 @@ ATGM Milan F1 and F2
 # Current Priorities
 *QOL stuff
 
-*Get more stats like accuracy implemented
+*Get more stats/tags like accuracy implemented (6 or 7 total is the target)
 
 *Add more units
 
