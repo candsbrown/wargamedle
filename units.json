@@ -480,14 +480,14 @@
         "name": "ATGM Milan F1",
         "nation": "France",
         "type": "Inf",
-        "fav": 1,
+        "fav": 0,
         "price": 10
     },
     {
         "name": "ATGM Milan F2",
         "nation": "France",
         "type": "Inf",
-        "fav": 1,
+        "fav": 0,
         "price": 20
     }
 ]
