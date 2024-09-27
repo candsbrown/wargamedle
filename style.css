@@ -5,15 +5,19 @@ body {
 }
 
 h1 {
-    color: #ccc;
+    color: white;
 }
 
 h2 {
-    color: #ccc;
+    color: white;
 } 
 
 h3 {
-    color: #ccc;
+    color: black;
+}
+
+h4 {
+    color: white;
 }
 
 #game-container {
