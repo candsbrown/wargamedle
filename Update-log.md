@@ -1,6 +1,15 @@
 # Updates
 # 9-27-2024:
 
+*Added guess summary. Now, all correct information is stored at the top of the page.
+
+*Added values to guesses. Instead of  "price is too low" the actual price will be listed alongside the too high or low indication.
+
+*Re-ordered page for the time being. Still bad, but important information should be always available, and the guess history should have the most recent guess at the top of the list, not the bottom.
+
+*Fixed ATGM Milan teams having an armor value of 1 instead of 0.
+# 9-27-2024:
+
 *Finished adding US Tank tab.
 # 9-26-2024:
 
