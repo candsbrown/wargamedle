@@ -1,4 +1,7 @@
 # Updates
+# 9-27-2024:
+
+*Finished adding US Tank tab.
 # 9-26-2024:
 
 *Added UK Recon tab to game.
