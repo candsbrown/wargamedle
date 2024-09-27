@@ -60,8 +60,8 @@ fetch('units.json')
                 guessHints.push(provideFAVHint(guessedUnit.fav));
             }
     
-            // Store the guess and hints in the guessHistory array
-            guessHistory.push({
+            // Store the guess and hints in the beginning of the guessHistory array
+            guessHistory.unshift({
                 guess: guessInput,
                 hints: guessHints
             });
