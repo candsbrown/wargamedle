@@ -180,7 +180,7 @@ function provideFAVHint(guessedFAV) {
         correctGuesses.fav = guessedFAV;
     } else if (guessedFAV > selectedFAV) {
         hintText = `❌ FAV of ${guessedFAV} is too high.`;
-        hintClass = "over-fav"; // Thinking about it, over-under might be unnecessary. Might just rephrase to correct and incorrect for any stats with integers later.
+        hintClass = "over-fav"; // Thinking about it, over-under ise unnecessary. Will fix at a later time hopefully.
     } else {
         hintText = `❌ FAV of ${guessedFAV} is too low.`;
         hintClass = "under-fav";
@@ -248,7 +248,7 @@ function updateGuessHistory() {
         guessHistoryContainer.appendChild(guessItem);
     });
 }
-// Auto-complete
+// Auto-complete (rework later to only appear after 3 or more characters)
 function showSuggestions() {
     const input = document.getElementById('guessInput').value.toLowerCase();
     const suggestionsContainer = document.getElementById('suggestions-container');
@@ -305,7 +305,7 @@ function resetUnit() {
     document.getElementById('summary-nation').textContent = "Nation: Unknown";
     document.getElementById('summary-fav').textContent = "FAV: Unknown";
 
-    // Clear previous highlights (if you are adding classes like "correct-summary")
+    // Clear previous highlights
     document.getElementById('summary-type').classList.remove("correct-summary");
     document.getElementById('summary-price').classList.remove("correct-summary");
     document.getElementById('summary-nation').classList.remove("correct-summary");
