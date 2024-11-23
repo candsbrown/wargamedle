@@ -13,10 +13,10 @@ let correctGuesses = {
 
 console.log(window.location.pathname);
 
-fetch('../assets/units.json')
+fetch('/wargamedle/assets/units.json')
     .then(response => {
         console.log("data1");
-        response.json()
+        response.json();
     })
     .then(data => {
         console.log("data2");
