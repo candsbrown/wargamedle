@@ -1,6 +1,9 @@
 ## Updates
+# 11/23/2024:
+Test commit: new site look, refactored code.
+
 # 11/18/2024:
--- WE HAVE ASSUMED CONTROL. --
+WE HAVE ASSUMED CONTROL.
 
 # 9-27-2024:
 
