@@ -248,6 +248,25 @@ function updateGuessHistory() {
         guessHistoryContainer.appendChild(guessItem);
     });
 }
+
+class unit {
+    
+}
+
+//add test to table
+function test() {
+    console.log("test");
+    const table = document.getElementById("guess-table");
+
+    const row = table.insertRow(-1);
+
+    for (let i = 0; i < 7; i++) {
+        const cell = row.insertCell(i);
+
+        cell.innerHTML = (i === 0) ? "New!":String(i);
+    }
+}
+
 // Auto-complete (rework later to only appear after 3 or more characters)
 function showSuggestions() {
     const input = document.getElementById('guessInput').value.toLowerCase();
@@ -286,7 +305,7 @@ document.addEventListener('click', function(event) {
     }
 });
 
-/// Reset
+// Reset
 function resetUnit() {
     // Select a new random unit
     selectedUnit = units[Math.floor(Math.random() * units.length)];

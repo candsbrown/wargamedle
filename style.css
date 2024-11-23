@@ -1,5 +1,11 @@
+@font-face {
+    font-family: bombardier;
+    src: url(BOMBARD_.otf);
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: bombardier;
+    font-size: large;
     text-align: center;
     background-color: #2c2c2c;
 }
@@ -13,27 +19,30 @@ h2 {
 } 
 
 h3 {
-    color: black;
+    color: white;
 }
 
 h4 {
     color: white;
 }
 
-#game-container {
-    margin: 20px auto;
-    padding: 20px;
-    max-width: 400px;
-    background-color: white;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+table {
+    width: 100%;
+    table-layout: fixed;
+    border-spacing: 0px 0px;
+}
+
+
+::placeholder {
+    color:#4c4c4c;
 }
 
 input, button {
     padding: 10px;
     margin: 10px;
     font-size: 16px;
+    background-color: gray;
+    border-radius: 4px;
 }
 
 button {
@@ -41,120 +50,47 @@ button {
     background-color: #4CAF50;
     color: white;
     border: none;
-    border-radius: 4px;
 }
 
 button:hover {
     background-color: #45a049;
 }
 
-#feedback {
-    margin-top: 20px;
-    font-size: 18px;
-    min-height: 24px;
-}
-
-#hints {
-    margin-top: 20px;
-    text-align: left;
-}
-
-.hint-item {
-    margin: 5px 0;
-    padding: 10px;
-    background-color: #f9f9f9;
-    border-left: 5px solid #ddd;
-    border-radius: 5px;
-    font-size: 16px;
-    color: #555;
-}
-
-.correct-hint,
-.hint-item.correct-type,
-.hint-item.correct-price,
-.hint-item.correct-nation,
-.hint-item.correct-fav {
-    border-left-color: green;
-}
-
-.incorrect-hint,
-.hint-item.incorrect-type,
-.hint-item.over-price,
-.hint-item.under-price,
-.hint-item.incorrect-nation,
-.hint-item.over-fav,
-.hint-item.under-fav {
-    border-left-color: red;
-}
-
-.guess-summary {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-top: 20px;
-    background-color: #f9f9f9;
-}
-
-.correct-summary {
-    color: green;
-    font-weight: bold;
+#game-container {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 600;
+    background-color: #2c2c2c;
+    border: 5px solid black;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 #guess-history-container {
     margin-top: 20px;
-    text-align: left;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
+    text-align: center;
 }
 
-#guess-history {
-    list-style-type: none;
-    padding: 0;
-}
-
-.guess-item {
-    margin-bottom: 10px;
-    padding: 10px;
-    border-left: 5px solid #ddd;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-}
-
-.guess-text {
-    font-weight: bold;
-}
-
-.hint-text {
-    margin-top: 5px;
-    color: #555;
-}
-
-#attempts {
-    margin-top: 10px;
-    font-size: 16px;
-    color: #333;
-}
-
-.hint-indicator {
-    margin-left: 10px;
-    font-size: 14px;
-}
 #suggestions-container {
-    border: 1px solid #ddd;
+    border: 1px solid #2c2c2c;
     max-height: 150px;
     overflow-y: auto;
     position: relative;
-    background-color: #fff;
+    background-color: red;
     width: 100%;
+    border-radius: 4px;
+
 }
 
 .suggestion-item {
-    padding: 10px;
+    padding: 4px;
     cursor: pointer;
-    background-color: #f9f9f9;
-    border-bottom: 1px solid #ddd;
+    background-color: black;
+    color:#45a049;
+    border-bottom: 1px solid red;
+    border-top: 1px solid red;
 }
 
 .suggestion-item:hover {
-    background-color: #f0f0f0;
+    background-color: gray;
 }

@@ -7,31 +7,64 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Mechdle</h1>
+    <h1>Wargamedle</h1>
     <h2>Guess the Unit!</h2>
 
     <div id="game-container">
-        <input type="text" id="guessInput" placeholder="Enter your guess" oninput="showSuggestions()">
+        <input type="text" id="guessInput" placeholder="Enter your guess..." oninput="showSuggestions()">
         <div id="suggestions-container"></div> <!-- Auto-complete box -->
         <button onclick="checkGuess()">Submit Guess</button>
         <button onclick="resetUnit()">Reset Game</button>
-
-        <div id="feedback"></div>
-        <div id="hint"></div> <!-- This will now hold multiple hints -->
-        <div id="attempts">Attempts: 0</div>
-        <div id="guess-summary" class="guess-summary">
-            <h3>Guess Summary</h3>
-            <div id="summary-type">Type: Unknown</div>
-            <div id="summary-price">Price: Unknown</div>
-            <div id="summary-nation">Nation: Unknown</div>
-            <div id="summary-fav">FAV: Unknown</div>
-            </div>
-        </div>
+        <button onclick="test()">Test</button>
     </div>
-        <div id="guess-history-container">
-            <h4>Guess History</h4>
-            <ul id="guess-history"></ul>
 
+    <div id="guess-history-container">
+        <table id="guess-table">
+            <thead>
+                <tr>
+                    <th><p></p></th>
+                    <th><p>Nationailty</p></th>
+                    <th><p>Cost</p></th>
+                    <th><p>Type</p></th>
+                    <th><p>Frontal Armor</p></th>
+                    <th><p>Weapons</p></th>
+                    <th><p>Stealth</p></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!--tr> Idea to add caption to icon
+                    <td class="name">Name</td>
+                </tr-->
+                <tr>
+                    <td><p>A</p></td>
+                    <td><p>1</p></td>
+                    <td><p>2</p></td>
+                    <td><p>3</p></td>
+                    <td><p>4</p></td>
+                    <td><p>5</p></td>
+                    <td><p>6</p></td>
+                </tr>
+                <tr>
+                    <td><p>B</p></td>
+                    <td><p>1</p></td>
+                    <td><p>2</p></td>
+                    <td><p>3</p></td>
+                    <td><p>4</p></td>
+                    <td><p>5</p></td>
+                    <td><p>6</p></td>
+                </tr>
+                <tr>
+                    <td><p>C</p></td>
+                    <td><p>1</p></td>
+                    <td><p>2</p></td>
+                    <td><p>3</p></td>
+                    <td><p>4</p></td>
+                    <td><p>5</p></td>
+                    <td><p>6</p></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     
 
     <script src="script.js"></script>

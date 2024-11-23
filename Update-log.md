@@ -1,4 +1,7 @@
-# Updates
+## Updates
+# 11/18/2024:
+-- WE HAVE ASSUMED CONTROL. --
+
 # 9-27-2024:
 
 *Added guess summary. Now, all correct information is stored at the top of the page.
