@@ -36,6 +36,32 @@ table {
     border-spacing: 0px 0px;
 }
 
+td {
+    margin: 5px;
+    border-radius: 16px;
+}
+
+td.hint-higher {
+    background-image: url(../assets/reupdarrow.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+td.hint-lower {
+    background-image: url(../assets/reddownarrow.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+td.hint-wrong {
+    background-color: red;
+}
+
+td.hint-right {
+    background-color: #45a049;
+}
 
 ::placeholder {
     color:#4c4c4c;

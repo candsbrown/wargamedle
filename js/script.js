@@ -1,6 +1,5 @@
 let units = []; // Array to store units from JSON
 let selectedUnit;
-let attempts = 0;
 let hintClass = "";
 let guessHistory = [];
 let correctGuesses = {
@@ -9,12 +8,18 @@ let correctGuesses = {
     nation: null,
     fav: null
 };
-const maxAttempts = 5;
 
 // Fetch units from the JSON file
-fetch('units.json')
-    .then(response => response.json())
+
+console.log(window.location.pathname);
+
+fetch('../assets/units.json')
+    .then(response => {
+        console.log("data1");
+        response.json()
+    })
     .then(data => {
+        console.log("data2");
         units = data;
         resetUnit(); // Initialize the game once the data is loaded
     })
@@ -22,61 +27,59 @@ fetch('units.json')
         console.error("Error fetching the units:", error);
     });
 
-    function checkGuess() {
-        const guessInput = document.getElementById('guessInput').value.trim();
-        const feedback = document.getElementById('feedback');
-        const hintsContainer = document.getElementById('hint'); // Container for current guess hints
-    
-        if (guessInput === "") {
-            feedback.textContent = "Please enter a unit name.";
-            feedback.style.color = "orange";
-            return;
-        }
-    
-        attempts++;
-    
-        // Find the guessed unit
-        const guessedUnit = units.find(game => game.name.toLowerCase() === guessInput.toLowerCase());
-    
-        // Clear previous hints
-        hintsContainer.innerHTML = "";
-    
-        if (guessedUnit) {
-            let guessHints = [];
-    
-            if (guessedUnit.name.toLowerCase() === selectedUnit.name.toLowerCase()) {
-                feedback.textContent = "🎉 Correct! You guessed the unit!";
-                feedback.style.color = "green";
-                hintsContainer.innerHTML = ""; // Clear hints if correct
-                guessHints.push("(You guessed the correct unit!)");
-            } else {
-                feedback.textContent = "❌ Wrong guess. Try again!";
-                feedback.style.color = "red";
-    
-                // Add type and price hints to guessHints array
-                guessHints.push(provideTypeHint(guessedUnit.type));
-                guessHints.push(providePriceHint(guessedUnit.price));
-                guessHints.push(provideNationHint(guessedUnit.nation));
-                guessHints.push(provideFAVHint(guessedUnit.fav));
-            }
-    
-            // Store the guess and hints in the beginning of the guessHistory array
-            guessHistory.unshift({
-                guess: guessInput,
-                hints: guessHints
-            });
-    
-            // Update the guess history UI
-            updateGuessHistory();
-    
-        } else {
-            feedback.textContent = "❓ Unit not found in the list. Please try another unit.";
-            feedback.style.color = "orange";
-        }
-    
-        // Clear the input field
-        document.getElementById('guessInput').value = "";
+function checkGuess() {
+    const guessInput = document.getElementById('guessInput').value.trim();
+    const feedback = document.getElementById('feedback');
+    const hintsContainer = document.getElementById('hint'); // Container for current guess hints
+
+    if (guessInput === "") {
+        feedback.textContent = "Please enter a unit name.";
+        feedback.style.color = "orange";
+        return;
     }
+
+    // Find the guessed unit
+    const guessedUnit = units.find(game => game.name.toLowerCase() === guessInput.toLowerCase());
+
+    // Clear previous hints
+    hintsContainer.innerHTML = "";
+
+    if (guessedUnit) {
+        let guessHints = [];
+
+        if (guessedUnit.name.toLowerCase() === selectedUnit.name.toLowerCase()) {
+            feedback.textContent = "🎉 Correct! You guessed the unit!";
+            feedback.style.color = "green";
+            hintsContainer.innerHTML = ""; // Clear hints if correct
+            guessHints.push("(You guessed the correct unit!)");
+        } else {
+            feedback.textContent = "❌ Wrong guess. Try again!";
+            feedback.style.color = "red";
+
+            // Add type and price hints to guessHints array
+            guessHints.push(provideTypeHint(guessedUnit.type));
+            guessHints.push(providePriceHint(guessedUnit.price));
+            guessHints.push(provideNationHint(guessedUnit.nation));
+            guessHints.push(provideFAVHint(guessedUnit.fav));
+        }
+
+        // Store the guess and hints in the beginning of the guessHistory array
+        guessHistory.unshift({
+            guess: guessInput,
+            hints: guessHints
+        });
+
+        // Update the guess history UI
+        updateGuessHistory();
+
+    } else {
+        feedback.textContent = "❓ Unit not found in the list. Please try another unit.";
+        feedback.style.color = "orange";
+    }
+
+    // Clear the input field
+    document.getElementById('guessInput').value = "";
+}
 
 // Function to provide type-based hints and update DOM
 function provideTypeHint(guessedType) {
@@ -255,7 +258,7 @@ class unit {
 
 //add test to table
 function test() {
-    console.log("test");
+    console.log("test2");
     const table = document.getElementById("guess-table");
 
     const row = table.insertRow(-1);
@@ -270,7 +273,7 @@ function test() {
 }
 
 // Auto-complete (rework later to only appear after 3 or more characters)
-function showSuggestions() {
+function inputShowSuggestions() {
     const input = document.getElementById('guessInput').value.toLowerCase();
     const suggestionsContainer = document.getElementById('suggestions-container');
     
@@ -311,42 +314,6 @@ document.addEventListener('click', function(event) {
 function resetUnit() {
     // Select a new random unit
     selectedUnit = units[Math.floor(Math.random() * units.length)];
-
-    // Clear guess summary
-    correctGuesses = {
-        type: null,
-        price: null,
-        nation: null,
-        fav: null
-    };
-
-    // Reset summary elements
-    document.getElementById('summary-type').textContent = "Type: Unknown";
-    document.getElementById('summary-price').textContent = "Price: Unknown";
-    document.getElementById('summary-nation').textContent = "Nation: Unknown";
-    document.getElementById('summary-fav').textContent = "FAV: Unknown";
-
-    // Clear previous highlights
-    document.getElementById('summary-type').classList.remove("correct-summary");
-    document.getElementById('summary-price').classList.remove("correct-summary");
-    document.getElementById('summary-nation').classList.remove("correct-summary");
-    document.getElementById('summary-fav').classList.remove("correct-summary");
-
-    // Reset game state
-    attempts = 0;
-    guessHistory = [];
-
-    // Clear feedback
-    document.getElementById('feedback').textContent = "";
-    document.getElementById('hint').innerHTML = "";
-    document.getElementById('guessInput').value = "";
-    document.getElementById('guess-history').innerHTML = "";
-    document.getElementById('attempts').textContent = `Attempts: ${attempts}`;
-
-    // Feedback to show that the game has reset
-    const feedback = document.getElementById('feedback');
-    feedback.textContent = "Game has been reset! Try a new unit.";
-    feedback.style.color = "blue";
 }
 
 
@@ -361,4 +328,4 @@ function debounce(func, delay) {
     }
 }
 
-document.getElementById('guessInput').addEventListener('input', debounce(showSuggestions, 300));
+document.getElementById('guessInput').addEventListener('input', debounce(inputShowSuggestions, 300));
