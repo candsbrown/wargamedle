@@ -10,16 +10,11 @@ let correctGuesses = {
 };
 
 // Fetch units from the JSON file
-
-console.log(window.location.pathname);
-
-fetch('/wargamedle/assets/units.json')
+fetch('/wargamedle/assets/units.json') //wargamedle is basically root directory
     .then(response => {
-        console.log("data1");
-        response.json();
+        return response.json();
     })
     .then(data => {
-        console.log("data2");
         units = data;
         resetUnit(); // Initialize the game once the data is loaded
     })
