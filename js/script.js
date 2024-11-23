@@ -262,8 +262,10 @@ function test() {
 
     for (let i = 0; i < 7; i++) {
         const cell = row.insertCell(i);
+        const paragraph = document.createElement("p");
 
-        cell.innerHTML = (i === 0) ? "New!":String(i);
+        paragraph.textContent = (i === 0) ? "New!":String(i);
+        cell.appendChild(paragraph);
     }
 }
 
