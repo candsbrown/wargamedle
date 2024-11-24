@@ -1,16 +1,8 @@
 let units = []; // Array to store units from JSON
-let selectedUnit;
-let hintClass = "";
-let guessHistory = [];
-let correctGuesses = {
-    type: null,
-    price: null,
-    nation: null,
-    fav: null
-};
+let selectedUnit; //stores selected unit (this is the unit you're trying to guess!)
 
 // Fetch units from the JSON file
-fetch('/wargamedle/assets/units.json') //wargamedle is basically root directory
+fetch('/assets/unitData.json') //wargamedle is basically root directory
     .then(response => {
         return response.json();
     })
@@ -22,176 +14,111 @@ fetch('/wargamedle/assets/units.json') //wargamedle is basically root directory
         console.error("Error fetching the units:", error);
     });
 
-function checkGuess() {
-    const guessInput = document.getElementById('guessInput').value.trim();
-    const feedback = document.getElementById('feedback');
-    const hintsContainer = document.getElementById('hint'); // Container for current guess hints
+//called on submission, both by pressing enter and 
+function submit() {
+    const inputElement = document.getElementById('guessInput');
+    const suggestionsContainer = document.getElementById('suggestions-container');
 
-    if (guessInput === "") {
-        feedback.textContent = "Please enter a unit name.";
-        feedback.style.color = "orange";
-        return;
+    if (inputElement.value.trim() !== "" && suggestionsContainer.children.length !== 0) { //get first autocomplete
+        inputElement.value = suggestionsContainer.children[0].innerHTML;
+        suggestionsContainer.innerHTML = ""; //clear other suggestions
+    }
+    else if (inputElement.value.trim() !== "") { //submit what's in the box
+        console.log("submitted: " + inputElement.value);
+        if (checkSubmission(inputElement.value.trim())) document.getElementById('guessInput').value = ""; //clear the input field
+    }
+}
+
+//checks submission, finds unit
+function checkSubmission(guess) {
+    //get guessed unit based on name
+    const guessedUnit = units.find(unit => unit.name.toLowerCase() === guess.toLowerCase());
+
+    if (guess === "" || !guessedUnit) { //if unit not found...
+        console.log("checkGuess false");
+        return false;
     }
 
-    // Find the guessed unit
-    const guessedUnit = units.find(game => game.name.toLowerCase() === guessInput.toLowerCase());
+    compareGuess(guessedUnit);
+    return true;
+}
 
-    // Clear previous hints
-    hintsContainer.innerHTML = "";
+//makes guess comparisons
+function compareGuess(guessedUnit) {
+    const feedbackLine = document.getElementById("feedback");
 
-    if (guessedUnit) {
-        let guessHints = [];
+    if (selectedUnit.id === guessedUnit.id) {
+        console.log("Winner!"); //do winning stuff
+        feedbackLine.textContent = "Congratulations!"
+    } else {
+        feedbackLine.textContent = "Not quite!"
+    }
+    
+    //country, tab, year, cost, armor, stealth
+    selectedUnitFrontalArmor = selectedUnit.armor.split("|")[0];
+    guessedUnitFrontalArmor = guessedUnit.armor.split("|")[0];
 
-        if (guessedUnit.name.toLowerCase() === selectedUnit.name.toLowerCase()) {
-            feedback.textContent = "🎉 Correct! You guessed the unit!";
-            feedback.style.color = "green";
-            hintsContainer.innerHTML = ""; // Clear hints if correct
-            guessHints.push("(You guessed the correct unit!)");
-        } else {
-            feedback.textContent = "❌ Wrong guess. Try again!";
-            feedback.style.color = "red";
+    //makes comparison: true/false for boolean hints, -1,0,1 for higher/lower hints
+    const comparison = [
+        selectedUnit.country === guessedUnit.country,
+        selectedUnit.tab === guessedUnit.tab,
+        (selectedUnit.year < guessedUnit.year) ? -1 : ((selectedUnit.year > guessedUnit.year) ? 1 : 0),
+        (selectedUnit.cost < guessedUnit.cost) ? -1 : ((selectedUnit.cost > guessedUnit.cost) ? 1 : 0),
+        (selectedUnitFrontalArmor < guessedUnitFrontalArmor) ? -1 : ((selectedUnitFrontalArmor > guessedUnitFrontalArmor) ? 1 : 0),
+        selectedUnit.stealth === guessedUnit.stealth
+    ];
 
-            // Add type and price hints to guessHints array
-            guessHints.push(provideTypeHint(guessedUnit.type));
-            guessHints.push(providePriceHint(guessedUnit.price));
-            guessHints.push(provideNationHint(guessedUnit.nation));
-            guessHints.push(provideFAVHint(guessedUnit.fav));
+    console.log(comparison);
+    updateGuessTable(guessedUnit.name, comparison);
+}
+
+//updates table with guess and comparison data
+function updateGuessTable(name, comparison) {
+    const guessTable = document.getElementById("guess-table");
+    const row = guessTable.insertRow(-1);
+
+    const nameCell = row.insertCell(0);
+    const nameText = document.createElement("p");
+    nameText.textContent = name;
+    nameCell.appendChild(nameText);
+
+    for (let i = 0; i < comparison.length; i++) {
+        let hint;
+        if (comparison[i] === false) {
+            hint = "🟥";
+        }
+        else if (comparison[i] === true || comparison[i] === 0) {
+            hint = "🟩";
+        }
+        else if (comparison[i] < 0) {
+            hint = "⬇️";
+        }
+        else {//if (comparison[i] > 0)
+            hint = "⬆️";
         }
 
-        // Store the guess and hints in the beginning of the guessHistory array
-        guessHistory.unshift({
-            guess: guessInput,
-            hints: guessHints
-        });
-
-        // Update the guess history UI
-        updateGuessHistory();
-
-    } else {
-        feedback.textContent = "❓ Unit not found in the list. Please try another unit.";
-        feedback.style.color = "orange";
+        const hintCell = row.insertCell(i+1);
+        hintCell.className = "hint";
+        const hintText = document.createElement("p");
+        hintText.textContent = hint;
+        hintCell.appendChild(hintText);
     }
-
-    // Clear the input field
-    document.getElementById('guessInput').value = "";
 }
 
-// Function to provide type-based hints and update DOM
-function provideTypeHint(guessedType) {
-    const selectedType = selectedUnit.type;
-    const hintsContainer = document.getElementById('hint');
+//add test to table
+function test() {
+    console.log("test2");
+    const table = document.getElementById("guess-table");
 
-    let hintText = "";
-    let hintClass = "";
+    const row = table.insertRow(-1);
 
-    // Determine type hint
-    if (guessedType === selectedType) {
-        hintText = `✅ Unit Type ${guessedType} is correct.`;
-        hintClass = "correct-type";
-        correctGuesses.type = guessedType;
-    } else {
-        hintText = `❌ Unit Type ${guessedType} is incorrect.`;
-        hintClass = "incorrect-type";
+    for (let i = 0; i < 7; i++) {
+        const cell = row.insertCell(i);
+        const paragraph = document.createElement("p");
+
+        paragraph.textContent = (i === 0) ? "New!":String(i);
+        cell.appendChild(paragraph);
     }
-
-    // Update the DOM for current guess unit type
-    const hintItem = document.createElement('div');
-    hintItem.className = `hint-item ${hintClass}`;
-    hintItem.textContent = hintText;
-    hintsContainer.appendChild(hintItem);
-
-    updateGuessSummary();
-    return hintText; // Return the hint text for history
-}
-
-// Function to provide price-based hints
-function providePriceHint(guessedPrice) {
-    const selectedPrice = selectedUnit.price;
-    const hintsContainer = document.getElementById('hint');
-
-    let hintText = "";
-    let hintClass = "";
-
-    // Determine price hint
-    if (guessedPrice === selectedPrice) {
-        hintText = `✅ Price of ${guessedPrice} is correct.`;
-        hintClass = "correct-price";
-        correctGuesses.price = guessedPrice;
-    } else if (guessedPrice > selectedPrice) {
-        hintText = `❌ Price of ${guessedPrice} is too high.`;
-        hintClass = "over-price";
-    } else {
-        hintText = `❌ Price of ${guessedPrice} is too low.`;
-        hintClass = "under-price";
-    }
-
-    // Create and append the hint
-    const hintItem = document.createElement('div');
-    hintItem.className = `hint-item ${hintClass}`;
-    hintItem.textContent = hintText;
-    hintsContainer.appendChild(hintItem);
-
-    updateGuessSummary();
-    return hintText; // Return the hint text for history
-}
-
-// Function to provide nation-based hints
-function provideNationHint(guessedNation) {
-    const selectedNation = selectedUnit.nation;
-    const hintsContainer = document.getElementById('hint');
-
-    let hintText = "";
-    let hintClass = "";
-
-    // Determine type hint
-    if (guessedNation === selectedNation) {
-        hintText = `✅ Unit Nation ${guessedNation} is correct.`;
-        hintClass = "correct-nation";
-        correctGuesses.nation = guessedNation;
-    } else {
-        hintText = `❌ Unit Nation ${guessedNation} is incorrect.`;
-        hintClass = "incorrect-nation";
-    }
-
-    // Update the DOM for current guess unit nation
-    const hintItem = document.createElement('div');
-    hintItem.className = `hint-item ${hintClass}`;
-    hintItem.textContent = hintText;
-    hintsContainer.appendChild(hintItem);
-
-    updateGuessSummary();
-    return hintText; // Return the hint text for history
-}
-
-// Function to provide FAV-based hints
-function provideFAVHint(guessedFAV) {
-    const selectedFAV = selectedUnit.fav;
-    const hintsContainer = document.getElementById('hint');
-
-    let hintText = "";
-    let hintClass = "";
-
-    // Determine FAV hint
-    if (guessedFAV === selectedFAV) {
-        hintText = `✅ FAV of ${guessedFAV} is correct.`;
-        hintClass = "correct-fav";
-        correctGuesses.fav = guessedFAV;
-    } else if (guessedFAV > selectedFAV) {
-        hintText = `❌ FAV of ${guessedFAV} is too high.`;
-        hintClass = "over-fav"; // Thinking about it, over-under ise unnecessary. Will fix at a later time hopefully.
-    } else {
-        hintText = `❌ FAV of ${guessedFAV} is too low.`;
-        hintClass = "under-fav";
-    }
-
-    // Update the DOM
-    const hintItem = document.createElement('div');
-    hintItem.className = `hint-item ${hintClass}`;
-    hintItem.textContent = hintText;
-    hintsContainer.appendChild(hintItem);
-
-    updateGuessSummary();
-    return hintText; // Return the hint text for history
 }
 
 function updateGuessSummary() {
@@ -247,34 +174,13 @@ function updateGuessHistory() {
     });
 }
 
-class unit {
-    
-}
-
-//add test to table
-function test() {
-    console.log("test2");
-    const table = document.getElementById("guess-table");
-
-    const row = table.insertRow(-1);
-
-    for (let i = 0; i < 7; i++) {
-        const cell = row.insertCell(i);
-        const paragraph = document.createElement("p");
-
-        paragraph.textContent = (i === 0) ? "New!":String(i);
-        cell.appendChild(paragraph);
-    }
-}
-
 // Auto-complete (rework later to only appear after 3 or more characters)
 function inputShowSuggestions() {
     const input = document.getElementById('guessInput').value.toLowerCase();
     const suggestionsContainer = document.getElementById('suggestions-container');
     
     // Clear previous suggestion
-    suggestionsContainer.innerHTML = "";
-
+    suggestionsContainer.innerHTML = null;
     if (input === "") {
         return; // Don't show suggestions if input is empty
     }
@@ -309,6 +215,7 @@ document.addEventListener('click', function(event) {
 function resetUnit() {
     // Select a new random unit
     selectedUnit = units[Math.floor(Math.random() * units.length)];
+    console.log("Selected unit: " + selectedUnit.name);
 }
 
 
@@ -323,4 +230,4 @@ function debounce(func, delay) {
     }
 }
 
-document.getElementById('guessInput').addEventListener('input', debounce(inputShowSuggestions, 300));
+document.getElementById('guessInput').addEventListener('input', debounce(inputShowSuggestions, 0));

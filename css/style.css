@@ -28,6 +28,7 @@ h4 {
 
 p {
     color: white;
+    margin: 6px;
 }
 
 table {
@@ -36,9 +37,10 @@ table {
     border-spacing: 0px 0px;
 }
 
-td {
+td.hint {
     margin: 5px;
     border-radius: 16px;
+    font-size: 1.5em;
 }
 
 td.hint-higher {

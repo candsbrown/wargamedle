@@ -1,4 +1,13 @@
 ## Updates
+# 11/24/2024:
+updated script.js,
+finalizing index.html,
+new unitData file with all units (except italy).
+
+Almost functional game!
+Problems with unit selection (units from different nations with identical names will always be registered as one particular unit)
+Problems with data: frontal armor values for inf and air units are 0.6 and 0.8??? thx eugene
+
 # 11/23/2024:
 Test commit: new site look, refactored code.
 
