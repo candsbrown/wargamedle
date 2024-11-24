@@ -2,7 +2,7 @@ let units = []; // Array to store units from JSON
 let selectedUnit; //stores selected unit (this is the unit you're trying to guess!)
 
 // Fetch units from the JSON file
-fetch('/assets/unitData.json') //wargamedle is basically root directory
+fetch('/wargamedle/assets/unitData.json') //wargamedle is basically root directory
     .then(response => {
         return response.json();
     })
