@@ -1,13 +1,17 @@
 @font-face {
     font-family: bombardier;
     src: url(../assets/BOMBARD_.otf);
+    font-weight: bold;
 }
 
 body {
     font-family: bombardier;
-    font-size: large;
+    font-size: larger;
     text-align: center;
+
     background-color: #2c2c2c;
+
+    
 }
 
 h1 {
@@ -69,6 +73,16 @@ td.hint-right {
     color:#4c4c4c;
 }
 
+input#guessInput {
+    margin: 0px;
+    padding: 10px;
+
+    background-image: url(../assets/reddownarrow.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 input, button {
     padding: 10px;
     margin: 10px;
@@ -91,9 +105,24 @@ button:hover {
 #game-container {
     margin: 20px auto;
     padding: 20px;
-    max-width: 600px;
+    max-width: 300px;
     background-color: #2c2c2c;
     border-radius: 8px;
+    width: 300px;
+}
+
+#suggestions-container {
+    margin: 0px auto;
+    border: 1px solid #2c2c2c;
+    max-height: 150px;
+    overflow-y: auto;
+    position: absolute;
+    background-color: red;
+    width: 200px;
+    border-radius: 0px;
+
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 #guess-history-container {
@@ -102,24 +131,16 @@ button:hover {
     max-width: 800px;
 }
 
-#suggestions-container {
-    border: 1px solid #2c2c2c;
-    max-height: 150px;
-    overflow-y: auto;
-    position: relative;
-    background-color: red;
-    width: 100%;
-    border-radius: 4px;
-
-}
 
 .suggestion-item {
     padding: 4px;
     cursor: pointer;
     background-color: black;
-    color:#45a049;
-    border-bottom: 1px solid red;
-    border-top: 1px solid red;
+    color: white;
+    border-bottom: 1px solid white;
+    border-top: 1px solid white;
+
+    text-align: left;
 }
 
 .suggestion-item:hover {

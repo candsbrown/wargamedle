@@ -1431,7 +1431,7 @@
  },
  {
    "id": 17840,
-   "name": "BRDM-2 MALUTKA-P ",
+   "name": "BRDM-2 MALUTKA-P",
    "country": "POL",
    "tab": "VHC",
    "cost": 20,
@@ -2071,7 +2071,7 @@
  },
  {
    "id": 17904,
-   "name": "BPzV SVATAVA #reco3 ",
+   "name": "BPzV SVATAVA #reco3",
    "country": "TCH",
    "tab": "REC",
    "cost": 50,
@@ -3651,7 +3651,7 @@
  },
  {
    "id": 18064,
-   "name": "PTŘS FAGOT ",
+   "name": "PTŘS FAGOT",
    "country": "TCH",
    "tab": "INF",
    "cost": 10,
@@ -4111,7 +4111,7 @@
  },
  {
    "id": 18110,
-   "name": "GRANÁTOMET AGS-17 ",
+   "name": "GRANÁTOMET AGS-17",
    "country": "TCH",
    "tab": "INF",
    "cost": 15,
@@ -4221,7 +4221,7 @@
  },
  {
    "id": 18122,
-   "name": "HÆR HJEMMEVÆRNET ",
+   "name": "HÆR HJEMMEVÆRNET",
    "country": "DAN",
    "tab": "INF",
    "cost": 10,
@@ -4661,7 +4661,7 @@
  },
  {
    "id": 18167,
-   "name": "M67-HAN ",
+   "name": "M67-HAN",
    "country": "JAP",
    "tab": "INF",
    "cost": 15,
@@ -4691,7 +4691,7 @@
  },
  {
    "id": 18170,
-   "name": "SYOUJYŪ-BUNTAI ",
+   "name": "SYOUJYŪ-BUNTAI",
    "country": "JAP",
    "tab": "INF",
    "cost": 10,
@@ -4711,7 +4711,7 @@
  },
  {
    "id": 18172,
-   "name": "PSAM ",
+   "name": "PSAM",
    "country": "JAP",
    "tab": "INF",
    "cost": 25,
@@ -5341,7 +5341,7 @@
  },
  {
    "id": 18236,
-   "name": "KPz T-55AM1PB ",
+   "name": "KPz T-55AM1PB",
    "country": "RDA",
    "tab": "TNK",
    "cost": 40,
@@ -5351,7 +5351,7 @@
  },
  {
    "id": 18237,
-   "name": "KPz T-55AM2PB ",
+   "name": "KPz T-55AM2PB",
    "country": "RDA",
    "tab": "TNK",
    "cost": 55,
@@ -5381,7 +5381,7 @@
  },
  {
    "id": 18241,
-   "name": "KPz T-72M1 ",
+   "name": "KPz T-72M1",
    "country": "RDA",
    "tab": "TNK",
    "cost": 80,
@@ -6321,7 +6321,7 @@
  },
  {
    "id": 18335,
-   "name": "M109 ",
+   "name": "M109",
    "country": "US",
    "tab": "SUP",
    "cost": 50,
@@ -9101,7 +9101,7 @@
  },
  {
    "id": 18613,
-   "name": "9K33M2 ROMB ",
+   "name": "9K33M2 ROMB",
    "country": "POL",
    "tab": "SUP",
    "cost": 45,
@@ -10791,7 +10791,7 @@
  },
  {
    "id": 18784,
-   "name": "#command SKOT R-3 ",
+   "name": "#command SKOT R-3",
    "country": "POL",
    "tab": "LOG",
    "cost": 120,
@@ -11351,7 +11351,7 @@
  },
  {
    "id": 18841,
-   "name": "ZSU-23-4V1 SZYŁKA ",
+   "name": "ZSU-23-4V1 SZYŁKA",
    "country": "POL",
    "tab": "SUP",
    "cost": 35,
@@ -11781,7 +11781,7 @@
  },
  {
    "id": 18890,
-   "name": "PPZR STRZAŁA-2  ",
+   "name": "PPZR STRZAŁA-2 ",
    "country": "POL",
    "tab": "INF",
    "cost": 5,
@@ -12371,7 +12371,7 @@
  },
  {
    "id": 18950,
-   "name": "KPz T-72S1 ",
+   "name": "KPz T-72S1",
    "country": "RDA",
    "tab": "TNK",
    "cost": 120,
@@ -12391,7 +12391,7 @@
  },
  {
    "id": 18952,
-   "name": "T-72S ",
+   "name": "T-72S",
    "country": "POL",
    "tab": "TNK",
    "cost": 125,
@@ -12401,7 +12401,7 @@
  },
  {
    "id": 18953,
-   "name": "KPz T-72S ",
+   "name": "KPz T-72S",
    "country": "RDA",
    "tab": "TNK",
    "cost": 125,
@@ -15121,7 +15121,7 @@
  },
  {
    "id": 19230,
-   "name": "BM-21 GRAD ",
+   "name": "BM-21 GRAD",
    "country": "POL",
    "tab": "SUP",
    "cost": 65,
@@ -15241,7 +15241,7 @@
  },
  {
    "id": 19244,
-   "name": "STRB 90 H ",
+   "name": "STRB 90 H",
    "country": "SWE",
    "tab": "NAV",
    "cost": 70,
@@ -17881,7 +17881,7 @@
  },
  {
    "id": 19511,
-   "name": "W-3W SOKÓŁ ",
+   "name": "W-3W SOKÓŁ",
    "country": "POL",
    "tab": "HEL",
    "cost": 65,
@@ -17911,7 +17911,7 @@
  },
  {
    "id": 19514,
-   "name": "YAS'UR ",
+   "name": "YAS'UR",
    "country": "ISR",
    "tab": "LOG",
    "cost": 35,
@@ -19581,7 +19581,7 @@
  },
  {
    "id": 19681,
-   "name": "MiG-17PF ",
+   "name": "MiG-17PF",
    "country": "RDA",
    "tab": "AIR",
    "cost": 55,
@@ -20181,7 +20181,7 @@
  },
  {
    "id": 19741,
-   "name": "SK 60B ",
+   "name": "SK 60B",
    "country": "SWE",
    "tab": "AIR",
    "cost": 60,
@@ -20561,7 +20561,7 @@
  },
  {
    "id": 19779,
-   "name": "TORNADO GR.1 ",
+   "name": "TORNADO GR.1",
    "country": "UK",
    "tab": "AIR",
    "cost": 130,
@@ -20661,7 +20661,7 @@
  },
  {
    "id": 19789,
-   "name": "TORNADO IDS ",
+   "name": "TORNADO IDS",
    "country": "RFA",
    "tab": "AIR",
    "cost": 115,

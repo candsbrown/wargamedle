@@ -2,13 +2,13 @@ let units = []; // Array to store units from JSON
 let selectedUnit; //stores selected unit (this is the unit you're trying to guess!)
 
 // Fetch units from the JSON file
-fetch('/wargamedle/assets/unitData.json') //wargamedle is basically root directory
+fetch('/assets/unitData.json') //wargamedle is basically root directory
     .then(response => {
         return response.json();
     })
     .then(data => {
         units = data;
-        resetUnit(); // Initialize the game once the data is loaded
+        resetGame(); // Initialize the game once the data is loaded
     })
     .catch(error => {
         console.error("Error fetching the units:", error);
@@ -25,7 +25,7 @@ function submit() {
     }
     else if (inputElement.value.trim() !== "") { //submit what's in the box
         console.log("submitted: " + inputElement.value);
-        if (checkSubmission(inputElement.value.trim())) document.getElementById('guessInput').value = ""; //clear the input field
+        if (checkSubmission(inputElement.value.trim())) document.getElementById('guessInput').value = ""; //clear the input field only if checkSubmission finds a unit
     }
 }
 
@@ -105,75 +105,6 @@ function updateGuessTable(name, comparison) {
     }
 }
 
-//add test to table
-function test() {
-    console.log("test2");
-    const table = document.getElementById("guess-table");
-
-    const row = table.insertRow(-1);
-
-    for (let i = 0; i < 7; i++) {
-        const cell = row.insertCell(i);
-        const paragraph = document.createElement("p");
-
-        paragraph.textContent = (i === 0) ? "New!":String(i);
-        cell.appendChild(paragraph);
-    }
-}
-
-function updateGuessSummary() {
-    const summaryType = document.getElementById('summary-type');
-    const summaryPrice = document.getElementById('summary-price');
-    const summaryNation = document.getElementById('summary-nation');
-    const summaryFAV = document.getElementById('summary-fav');
-
-    // Update each element if it was correct
-    if (correctGuesses.type) {
-        summaryType.textContent = `Type: ${correctGuesses.type}`;
-        summaryType.classList.add("correct-summary");
-    }
-    if (correctGuesses.price) {
-        summaryPrice.textContent = `Price: ${correctGuesses.price}`;
-        summaryPrice.classList.add("correct-summary");
-    }
-    if (correctGuesses.nation) {
-        summaryNation.textContent = `Nation: ${correctGuesses.nation}`;
-        summaryNation.classList.add("correct-summary");
-    }
-    if (correctGuesses.fav !== null && correctGuesses.fav !== undefined) {
-        summaryFAV.textContent = `FAV: ${correctGuesses.fav}`;
-        summaryFAV.classList.add("correct-summary");
-    }
-}
-
-function updateGuessHistory() {
-    const guessHistoryContainer = document.getElementById('guess-history');
-    guessHistoryContainer.innerHTML = ""; // Clear current history
-
-    guessHistory.forEach(item => {
-        // Create a new list item for each guess
-        const guessItem = document.createElement('li');
-        guessItem.className = "guess-item";
-
-        // Add the guess text
-        const guessText = document.createElement('div');
-        guessText.className = "guess-text";
-        guessText.textContent = `Guess: ${item.guess}`;
-        guessItem.appendChild(guessText);
-
-        // Add the associated hints
-        item.hints.forEach(hint => {
-            const hintText = document.createElement('div');
-            hintText.className = "hint-text";
-            hintText.textContent = hint;  // Correctly shows hint text now
-            guessItem.appendChild(hintText);
-        });
-
-        // Append the guess item to the history container
-        guessHistoryContainer.appendChild(guessItem);
-    });
-}
-
 // Auto-complete (rework later to only appear after 3 or more characters)
 function inputShowSuggestions() {
     const input = document.getElementById('guessInput').value.toLowerCase();
@@ -212,7 +143,7 @@ document.addEventListener('click', function(event) {
 });
 
 // Reset
-function resetUnit() {
+function resetGame() {
     // Select a new random unit
     selectedUnit = units[Math.floor(Math.random() * units.length)];
     console.log("Selected unit: " + selectedUnit.name);
