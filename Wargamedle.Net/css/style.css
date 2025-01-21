@@ -1,0 +1,163 @@
+@font-face {
+    font-family: bombardier;
+    src: url(../assets/BOMBARD_.otf);
+    font-weight: bold;
+}
+
+body {
+    font-family: bombardier;
+    font-size: larger;
+    text-align: center;
+
+    background-color: #2c2c2c;
+
+    
+}
+
+h1 {
+    color: white;
+}
+
+h2 {
+    color: white;
+} 
+
+h3 {
+    color: white;
+}
+
+h4 {
+    color: white;
+}
+
+p {
+    color: white;
+    margin: 6px;
+}
+
+table {
+    width: 100%;
+    table-layout: fixed;
+    border-spacing: 0px 0px;
+}
+
+td.hint {
+    margin: 6px;
+    border-radius: 1px;
+    font-size: 1em;
+    height: 50px;
+    background-blend-mode: overlay;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-size: 2em;
+}
+
+::placeholder {
+    color:#4c4c4c;
+}
+
+#game-subheader {
+    height: 15px;
+}
+
+#guess-container {
+    height: 20px;
+}
+
+#guess-icon-container {
+    width: 164px;
+    height: 84px;
+
+    margin: 10px auto;
+    padding: 1px;
+    border: 3px solid white;
+    border-radius: 3px;
+
+    background-size: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+input#guessInput {
+    margin: 0px;
+    padding: 10px;
+
+    width: 250px;
+
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+input, button {
+    padding: 10px;
+    margin: 10px;
+    font-size: 16px;
+    background-color: gray;
+    border-radius: 4px;
+}
+
+button {
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#game-container {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 300px;
+    background-color: #2c2c2c;
+    border-radius: 8px;
+    width: 300px;
+}
+
+#suggestions-container {
+    margin: 0px auto;
+    border: 1px solid #2c2c2c;
+    max-height: 150px;
+    overflow-y: auto;
+    position: absolute;
+    background-color: red;
+    width: 260px;
+    border-radius: 0px;
+
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#guess-history-container {
+    margin: 20px auto;
+    text-align: center;
+    max-width: 1200px;
+}
+
+.suggestion-item {
+    padding: 4px;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    border-bottom: 1px solid white;
+    border-top: 1px solid white;
+    text-align: left;
+
+    background-size: 45px 28px;
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-blend-mode: exclusion;
+}
+
+.suggestion-text {
+    margin: 0px;
+    margin-left: 50px;
+}
+
+.suggestion-item:hover {
+    background-color: gray;
+}

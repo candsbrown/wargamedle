@@ -7,3 +7,7 @@
 /node_modules
 /obj/Debug
 /packages/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1
+/Wargamedle.Net/.vs/Wargamedle.Net
+/Wargamedle.Net/bin
+/Wargamedle.Net/obj/Debug
+/Wargamedle.Net/packages/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1
