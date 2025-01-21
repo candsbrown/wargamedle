@@ -2316,6 +2316,8 @@
   <ItemGroup>
     <Content Include="assets\BOMBARD_.otf" />
     <Content Include="assets\unitData.json" />
+    <Content Include="assets\Bombardier_edit.ttf" />
+    <Content Include="assets\Bombardier_edit.otf" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
