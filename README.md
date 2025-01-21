@@ -1,25 +1,17 @@
-# Mechdle
-WIP Gamedle-like game featuring the Wargame: Red Dragon Units
+# Wargamedle
+Wordle-like game featuring the Wargame: Red Dragon Units!
 
-This is my first attempt at a web game! Most of my experience is labwork in MATLAB and Python, so this is new to me still. Attempts will be made to update regularly, though I am a full-time Mech E student. Game can be played through https://redcheetah0117.github.io/Mechdle/. 
+Guess a unit to get clues about the attributes of the mystery unit!
 
-Fair warning: I am not a web designer, that part is being learned as I go. I also haven't implemented a proper dataset yet (I'm just plugging values into a JSON to test for now), but that's a later me problem.
-# Current Units:
-US Logistics, Infantry & Tank Tab
+Play here: https://candsbrown.github.io/wargamedle/
 
-AH-64D Apache Longbow
+Version 1.0
 
-UK Support & Recon Tabs
+Big thanks to Redcheetah, check out his original prototype here: https://redcheetah0117.github.io/Mechdle/
 
-SAS
+## Disclaimers: 
+- Naval tab units ARE enabled! (this might not be the case for long)
+- Command units and recon units still have the icon codes in their names (e.g. #reco3, #command)
+- it's probably buggy!
 
-ATGM Milan F1 and F2
 
-# Current Priorities
-*QOL stuff
-
-*Get more stats/tags like accuracy implemented (6 or 7 total is the target, though have ideas for how to implement more while keeping game fair)
-
-*Implement units in a better way
-
-*Make the game not an eyesore

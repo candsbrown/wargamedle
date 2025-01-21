@@ -1,13 +1,81 @@
-let units = []; // Array to store units from JSON
-let selectedUnit; //stores selected unit (this is the unit you're trying to guess!)
+let units; // store units from JSON
+let targetUnit = null; //stores target unit (this is the unit you're trying to guess!)
+let selectedUnit = null; //stores unit currently selected
+
+class Unit {
+    constructor(jsonUnit) {
+        this.id = jsonUnit.id;
+        this.name = jsonUnit.name;
+        this.icon_filename = jsonUnit.icon_filename;
+
+        this.game_attributes = {
+            "nation": jsonUnit.nation,
+            "speed" : jsonUnit.speed,
+            "frontal armor" : jsonUnit.armor,
+            "strength" : jsonUnit.strength,
+            "stealth" : jsonUnit.stealth,
+            "year" : jsonUnit.year,
+            "tab" : jsonUnit.tab,
+            "price" : jsonUnit.price,
+            "cards" : jsonUnit.cards,
+            "prototype" : jsonUnit.is_prototype
+        }
+    }
+
+    compareTo(other) {
+        return this.id === other.id;
+    }
+
+    makeComparisonReport(other) {
+        var res = [];
+        for (let attribute in this.game_attributes) res.push(this.game_attributes[attribute] === other.game_attributes[attribute]?"🟩":"🟥");
+        return res;
+    }
+
+    getIconURL() {
+        return `url(/wargamedle/assets/icons/${this.icon_filename.toLowerCase()})`;
+    }
+
+    getFlagURL() {
+        return `url(/wargamedle/assets/flags/${this.game_attributes["nation"].toLowerCase()}_flag.png)`;
+    }
+
+    toString() {
+        return `Unit[${this.id}(${this.name})]`;
+    }
+}
+
+function categoryFormat(str) {
+    return str.toUpperCase().replaceAll("_", " ");
+}
+
+function makeTableEntry(entryList, className = null, flagURL = null, pos = 1) {
+    const guessTable = document.getElementById("guess-table");
+    const row = guessTable.insertRow(pos);
+
+    for (var i in entryList) {
+        const hintCell = row.insertCell(-1);
+        hintCell.className = className;
+
+        if (i === '0' && flagURL != null) {
+            hintCell.style.backgroundImage = flagURL;
+            hintCell.style.backgroundColor = "#555555";
+            hintCell.style.fontSize = '1em';
+        }
+
+        const hintText = document.createElement("p");
+        hintText.textContent = entryList[i];
+        hintCell.appendChild(hintText);
+    }
+}
 
 // Fetch units from the JSON file
-fetch('/assets/unitData.json') //wargamedle is basically root directory
+fetch('/wargamedle/assets/unitData.json') //wargamedle is basically root directory
     .then(response => {
         return response.json();
     })
     .then(data => {
-        units = data;
+        units = data.map(item => new Unit(item));
         resetGame(); // Initialize the game once the data is loaded
     })
     .catch(error => {
@@ -16,98 +84,27 @@ fetch('/assets/unitData.json') //wargamedle is basically root directory
 
 //called on submission, both by pressing enter and 
 function submit() {
-    const inputElement = document.getElementById('guessInput');
-    const suggestionsContainer = document.getElementById('suggestions-container');
+    if (selectedUnit !== null) {
+        let report = selectedUnit.makeComparisonReport(targetUnit);
+        makeTableEntry([selectedUnit.name, ...report], 'hint', selectedUnit.getFlagURL());
 
-    if (inputElement.value.trim() !== "" && suggestionsContainer.children.length !== 0) { //get first autocomplete
-        inputElement.value = suggestionsContainer.children[0].innerHTML;
-        suggestionsContainer.innerHTML = ""; //clear other suggestions
-    }
-    else if (inputElement.value.trim() !== "") { //submit what's in the box
-        console.log("submitted: " + inputElement.value);
-        if (checkSubmission(inputElement.value.trim())) document.getElementById('guessInput').value = ""; //clear the input field only if checkSubmission finds a unit
-    }
-}
+        if (selectedUnit.compareTo(targetUnit)) {
+            document.getElementById("game-header").innerHTML = "Congratulations!";
+            document.getElementById("game-subheader").innerHTML = "The unit was:";
 
-//checks submission, finds unit
-function checkSubmission(guess) {
-    //get guessed unit based on name
-    const guessedUnit = units.find(unit => unit.name.toLowerCase() === guess.toLowerCase());
-
-    if (guess === "" || !guessedUnit) { //if unit not found...
-        console.log("checkGuess false");
-        return false;
-    }
-
-    compareGuess(guessedUnit);
-    return true;
-}
-
-//makes guess comparisons
-function compareGuess(guessedUnit) {
-    const feedbackLine = document.getElementById("feedback");
-
-    if (selectedUnit.id === guessedUnit.id) {
-        console.log("Winner!"); //do winning stuff
-        feedbackLine.textContent = "Congratulations!"
-    } else {
-        feedbackLine.textContent = "Not quite!"
-    }
-    
-    //country, tab, year, cost, armor, stealth
-    selectedUnitFrontalArmor = selectedUnit.armor.split("|")[0];
-    guessedUnitFrontalArmor = guessedUnit.armor.split("|")[0];
-
-    //makes comparison: true/false for boolean hints, -1,0,1 for higher/lower hints
-    const comparison = [
-        selectedUnit.country === guessedUnit.country,
-        selectedUnit.tab === guessedUnit.tab,
-        (selectedUnit.year < guessedUnit.year) ? -1 : ((selectedUnit.year > guessedUnit.year) ? 1 : 0),
-        (selectedUnit.cost < guessedUnit.cost) ? -1 : ((selectedUnit.cost > guessedUnit.cost) ? 1 : 0),
-        (selectedUnitFrontalArmor < guessedUnitFrontalArmor) ? -1 : ((selectedUnitFrontalArmor > guessedUnitFrontalArmor) ? 1 : 0),
-        selectedUnit.stealth === guessedUnit.stealth
-    ];
-
-    console.log(comparison);
-    updateGuessTable(guessedUnit.name, comparison);
-}
-
-//updates table with guess and comparison data
-function updateGuessTable(name, comparison) {
-    const guessTable = document.getElementById("guess-table");
-    const row = guessTable.insertRow(-1);
-
-    const nameCell = row.insertCell(0);
-    const nameText = document.createElement("p");
-    nameText.textContent = name;
-    nameCell.appendChild(nameText);
-
-    for (let i = 0; i < comparison.length; i++) {
-        let hint;
-        if (comparison[i] === false) {
-            hint = "🟥";
+            document.getElementById('button-submit').style.display = "none";
+            document.getElementById('guessInput').style.display = "none";
         }
-        else if (comparison[i] === true || comparison[i] === 0) {
-            hint = "🟩";
+        else {
+            document.getElementById('guess-icon-container').style.backgroundImage = null;
+            document.getElementById('guess-container').textContent = "";
         }
-        else if (comparison[i] < 0) {
-            hint = "⬇️";
-        }
-        else {//if (comparison[i] > 0)
-            hint = "⬆️";
-        }
-
-        const hintCell = row.insertCell(i+1);
-        hintCell.className = "hint";
-        const hintText = document.createElement("p");
-        hintText.textContent = hint;
-        hintCell.appendChild(hintText);
     }
 }
 
 // Auto-complete (rework later to only appear after 3 or more characters)
 function inputShowSuggestions() {
-    const input = document.getElementById('guessInput').value.toLowerCase();
+    const input = document.getElementById('guessInput').value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
     const suggestionsContainer = document.getElementById('suggestions-container');
     
     // Clear previous suggestion
@@ -117,18 +114,29 @@ function inputShowSuggestions() {
     }
 
     // Filter units based on input
-    const filteredUnits = units.filter(unit => unit.name.toLowerCase().startsWith(input));
+    const filteredUnits = units.filter(unit => unit.name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().includes(input));
 
     // Show suggestions
     filteredUnits.forEach(unit => {
         const suggestionItem = document.createElement('div');
         suggestionItem.className = 'suggestion-item';
-        suggestionItem.textContent = unit.name;
+        suggestionItem.style.backgroundImage = unit.getFlagURL()
+
+        const suggestionText = document.createElement('p');
+        suggestionText.className = 'suggestion-text';
+        suggestionText.textContent = unit.name;
+
+
+        suggestionItem.appendChild(suggestionText);
 
         // Fill field on click
         suggestionItem.onclick = function() {
-            document.getElementById('guessInput').value = unit.name;
-            suggestionsContainer.innerHTML = ""; // Clear suggestions after selection
+            selectedUnit = unit;
+            console.log(`selected ${selectedUnit.id}: ${selectedUnit.name}`);
+            document.getElementById('guess-container').textContent = selectedUnit.name;
+            document.getElementById('guessInput').value = '';
+            document.getElementById('guess-icon-container').style.backgroundImage = selectedUnit.getIconURL();
+            suggestionsContainer.innerHTML = ''; // Clear suggestions after selection
         };
 
         suggestionsContainer.appendChild(suggestionItem);
@@ -145,8 +153,17 @@ document.addEventListener('click', function(event) {
 // Reset
 function resetGame() {
     // Select a new random unit
-    selectedUnit = units[Math.floor(Math.random() * units.length)];
-    console.log("Selected unit: " + selectedUnit.name);
+    targetUnit = units[Math.floor(Math.random() * units.length)];
+    console.log("Target unit: " + targetUnit);
+    
+    //reset table & add categories
+    let game_attributes = [""];
+    for (let attribute in targetUnit.game_attributes) game_attributes.push(categoryFormat(attribute));
+    makeTableEntry(game_attributes, 'category-headers', null, 0);
+    
+    //reset feedbacks
+    document.getElementById("game-header").innerHTML = "Guess the Unit!";
+    document.getElementById("game-subheader").innerHTML = "";
 }
 
 

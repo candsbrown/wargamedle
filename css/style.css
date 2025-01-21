@@ -42,42 +42,49 @@ table {
 }
 
 td.hint {
-    margin: 5px;
-    border-radius: 16px;
-    font-size: 1.5em;
-}
-
-td.hint-higher {
-    background-image: url(../assets/reupdarrow.png);
-    background-size: contain;
-    background-position: center;
+    margin: 6px;
+    border-radius: 1px;
+    font-size: 1em;
+    height: 50px;
+    background-blend-mode: overlay;
+    background-size: 100% 100%;
     background-repeat: no-repeat;
-}
-
-td.hint-lower {
-    background-image: url(../assets/reddownarrow.png);
-    background-size: contain;
     background-position: center;
-    background-repeat: no-repeat;
-}
-
-td.hint-wrong {
-    background-color: red;
-}
-
-td.hint-right {
-    background-color: #45a049;
+    font-size: 2em;
 }
 
 ::placeholder {
     color:#4c4c4c;
 }
 
+#game-subheader {
+    height: 15px;
+}
+
+#guess-container {
+    height: 20px;
+}
+
+#guess-icon-container {
+    width: 164px;
+    height: 84px;
+
+    margin: 10px auto;
+    padding: 1px;
+    border: 3px solid white;
+    border-radius: 3px;
+
+    background-size: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 input#guessInput {
     margin: 0px;
     padding: 10px;
 
-    background-image: url(../assets/reddownarrow.png);
+    width: 250px;
+
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -118,7 +125,7 @@ button:hover {
     overflow-y: auto;
     position: absolute;
     background-color: red;
-    width: 200px;
+    width: 260px;
     border-radius: 0px;
 
     left: 50%;
@@ -128,9 +135,8 @@ button:hover {
 #guess-history-container {
     margin: 20px auto;
     text-align: center;
-    max-width: 800px;
+    max-width: 1200px;
 }
-
 
 .suggestion-item {
     padding: 4px;
@@ -139,8 +145,17 @@ button:hover {
     color: white;
     border-bottom: 1px solid white;
     border-top: 1px solid white;
-
     text-align: left;
+
+    background-size: 45px 28px;
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-blend-mode: exclusion;
+}
+
+.suggestion-text {
+    margin: 0px;
+    margin-left: 50px;
 }
 
 .suggestion-item:hover {

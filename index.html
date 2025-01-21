@@ -8,33 +8,21 @@
 </head>
 <body>
     <h1>Wargamedle</h1>
-    <h2>Guess the Unit!</h2>
+    <h2 id="game-header"></h2>
+    <h3 id="game-subheader"></h2>
 
     <div id="game-container">
-        <input type="text" id="guessInput" placeholder="Enter your guess..." oninput=inputShowSuggestions() onkeydown="if (event.keyCode == 13) submit()" autocomplete="off">
+        <div><p id="guess-container"></p></div>
+        <div id="guess-icon-container"></div>
+
+        <input type="text" id="guessInput" placeholder="Enter your guess..." oninput=inputShowSuggestions() autocomplete="off"> <!--onkeydown="if (event.keyCode == 13) submit()"-->
         <div id="suggestions-container"></div>
-        <button onclick=submit()>Submit Guess</button>
+
+        <button id="button-submit" onclick=submit()>Submit Guess</button>
     </div>
 
     <div id="guess-history-container">
-        <h3 id = "feedback">Make a guess...</h3>
         <table id="guess-table">
-            <thead>
-                <tr>
-                    <th><p>Name</p></th>
-                    <th><p>Nation</p></th>
-                    <th><p>Type</p></th>
-                    <th><p>Year</p></th>
-                    <th><p>Cost</p></th>
-                    <th><p>Frontal Armor</p></th>
-                    <th><p>Stealth</p></th>
-                </tr>
-            </thead>
-            <tbody>
-                <!--tr> Idea to add caption to icon
-                    <td class="name">Name</td>
-                </tr-->
-            </tbody>
         </table>
     </div>
     
